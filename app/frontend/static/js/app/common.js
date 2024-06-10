@@ -640,23 +640,23 @@ var faceapi;
 var Tesseract;
 var AvsHome;
 (function (AvsHome) {
-    var API_BASE_URL = '/';
+    var API_BASE_URL = "/";
     function main() {
         Action.init();
     }
     AvsHome.main = main;
     var Action;
     (function (Action) {
-        var exampleImplementationStartRedirectButton = $('#exampleImplementationStartRedirectButton');
-        var exampleImplementationStartJsButton = $('#exampleImplementationStartJsButton');
-        var exampleImplementationIframeJsButton = $('#exampleImplementationIframeJsButton');
-        var colorConfigBodyBackgroundInput = $('#colorConfigBodyBackgroundInput');
-        var colorConfigBodyForegroundInput = $('#colorConfigBodyForegroundInput');
-        var colorConfigButtonBackgroundInput = $('#colorConfigButtonBackgroundInput');
-        var colorConfigButtonForegroundInput = $('#colorConfigButtonForegroundInput');
-        var colorConfigButtonForegroundCTAInput = $('#colorConfigButtonForegroundCTAInput');
-        var accessInformationCallbackUrlInput = $('#accessInformationCallbackUrlInput');
-        var ageVerificationLogTextarea = $('#ageVerificationLogTextarea');
+        var exampleImplementationStartRedirectButton = $("#exampleImplementationStartRedirectButton");
+        var exampleImplementationStartJsButton = $("#exampleImplementationStartJsButton");
+        var exampleImplementationIframeJsButton = $("#exampleImplementationIframeJsButton");
+        var colorConfigBodyBackgroundInput = $("#colorConfigBodyBackgroundInput");
+        var colorConfigBodyForegroundInput = $("#colorConfigBodyForegroundInput");
+        var colorConfigButtonBackgroundInput = $("#colorConfigButtonBackgroundInput");
+        var colorConfigButtonForegroundInput = $("#colorConfigButtonForegroundInput");
+        var colorConfigButtonForegroundCTAInput = $("#colorConfigButtonForegroundCTAInput");
+        var accessInformationCallbackUrlInput = $("#accessInformationCallbackUrlInput");
+        var ageVerificationLogTextarea = $("#ageVerificationLogTextarea");
         var avsInstance = null;
         function init() {
             createUi();
@@ -664,81 +664,98 @@ var AvsHome;
         }
         Action.init = init;
         function createUi() {
-            exampleImplementationIframeJsButton.attr('disabled', 'disabled');
+            exampleImplementationIframeJsButton.attr("disabled", "disabled");
         }
         function createBindings() {
-            exampleImplementationStartRedirectButton.on('click', function (e) {
-                if (exampleImplementationStartRedirectButton.is('[disabled]')) {
+            exampleImplementationStartRedirectButton.on("click", function (e) {
+                if (exampleImplementationStartRedirectButton.is("[disabled]")) {
                     return;
                 }
-                exampleImplementationStartRedirectButton.attr('disabled', 'disabled');
+                exampleImplementationStartRedirectButton.attr("disabled", "disabled");
                 var postData = {
-                    colorConfigBodyBackgroundInput: colorConfigBodyBackgroundInput.val().toString(),
-                    colorConfigBodyForegroundInput: colorConfigBodyForegroundInput.val().toString(),
-                    colorConfigButtonBackgroundInput: colorConfigButtonBackgroundInput.val().toString(),
-                    colorConfigButtonForegroundInput: colorConfigButtonForegroundInput.val().toString(),
+                    colorConfigBodyBackgroundInput: colorConfigBodyBackgroundInput
+                        .val()
+                        .toString(),
+                    colorConfigBodyForegroundInput: colorConfigBodyForegroundInput
+                        .val()
+                        .toString(),
+                    colorConfigButtonBackgroundInput: colorConfigButtonBackgroundInput
+                        .val()
+                        .toString(),
+                    colorConfigButtonForegroundInput: colorConfigButtonForegroundInput
+                        .val()
+                        .toString(),
                     colorConfigButtonForegroundCTAInput: colorConfigButtonForegroundCTAInput.val().toString(),
                     callbackUrl: accessInformationCallbackUrlInput.val()
                 };
                 Ajax.getVerificationPayloadAndUrl(postData).then(function (data) {
-                    exampleImplementationStartRedirectButton.removeAttr('disabled');
+                    exampleImplementationStartRedirectButton.removeAttr("disabled");
                     window.open(data.url);
                 }, function (error) {
-                    exampleImplementationStartRedirectButton.removeAttr('disabled');
+                    exampleImplementationStartRedirectButton.removeAttr("disabled");
                     triggerError(error);
                 });
                 e.preventDefault();
             });
-            exampleImplementationStartJsButton.on('click', function (e) {
-                if (exampleImplementationStartJsButton.is('[disabled]')) {
+            exampleImplementationStartJsButton.on("click", function (e) {
+                if (exampleImplementationStartJsButton.is("[disabled]")) {
                     return;
                 }
-                exampleImplementationStartJsButton.attr('disabled', 'disabled');
+                exampleImplementationStartJsButton.attr("disabled", "disabled");
                 var postData = {
-                    colorConfigBodyBackgroundInput: colorConfigBodyBackgroundInput.val().toString(),
-                    colorConfigBodyForegroundInput: colorConfigBodyForegroundInput.val().toString(),
-                    colorConfigButtonBackgroundInput: colorConfigButtonBackgroundInput.val().toString(),
-                    colorConfigButtonForegroundInput: colorConfigButtonForegroundInput.val().toString(),
+                    colorConfigBodyBackgroundInput: colorConfigBodyBackgroundInput
+                        .val()
+                        .toString(),
+                    colorConfigBodyForegroundInput: colorConfigBodyForegroundInput
+                        .val()
+                        .toString(),
+                    colorConfigButtonBackgroundInput: colorConfigButtonBackgroundInput
+                        .val()
+                        .toString(),
+                    colorConfigButtonForegroundInput: colorConfigButtonForegroundInput
+                        .val()
+                        .toString(),
                     colorConfigButtonForegroundCTAInput: colorConfigButtonForegroundCTAInput.val().toString(),
                     callbackUrl: accessInformationCallbackUrlInput.val()
                 };
                 Ajax.getVerificationPayloadAndUrl(postData).then(function (data) {
                     iframeAvsHandler(data.iframeUrl);
                 }, function (error) {
-                    exampleImplementationStartJsButton.removeAttr('disabled');
+                    exampleImplementationStartJsButton.removeAttr("disabled");
                     triggerError(error);
                 });
                 e.preventDefault();
             });
-            exampleImplementationIframeJsButton.on('click', function (e) {
-                if (exampleImplementationIframeJsButton.is('[disabled]')) {
+            exampleImplementationIframeJsButton.on("click", function (e) {
+                if (exampleImplementationIframeJsButton.is("[disabled]")) {
                     return;
                 }
                 avsInstance.iframeInstance.expand();
                 e.preventDefault();
             });
-            colorConfigBodyBackgroundInput.on('change', function (e) {
+            colorConfigBodyBackgroundInput.on("change", function (e) {
                 restartIframeVerification();
             });
-            colorConfigBodyForegroundInput.on('change', function (e) {
+            colorConfigBodyForegroundInput.on("change", function (e) {
                 restartIframeVerification();
             });
-            colorConfigButtonBackgroundInput.on('change', function (e) {
+            colorConfigButtonBackgroundInput.on("change", function (e) {
                 restartIframeVerification();
             });
-            colorConfigButtonForegroundInput.on('change', function (e) {
+            colorConfigButtonForegroundInput.on("change", function (e) {
                 restartIframeVerification();
             });
-            colorConfigButtonForegroundCTAInput.on('change', function (e) {
+            colorConfigButtonForegroundCTAInput.on("change", function (e) {
                 restartIframeVerification();
             });
         }
         function triggerError(error) {
-            alert('Error: ' + error.code + ' - ' + error.msg);
+            alert("Error: " + error.code + " - " + error.msg);
         }
         function appendToLog(message) {
             ageVerificationLogTextarea.append(message + "\n");
-            ageVerificationLogTextarea.get(0).scrollTop = ageVerificationLogTextarea.get(0).scrollHeight;
+            ageVerificationLogTextarea.get(0).scrollTop =
+                ageVerificationLogTextarea.get(0).scrollHeight;
         }
         function iframeAvsHandler(iframeUrl) {
             if (avsInstance === null) {
@@ -757,51 +774,56 @@ var AvsHome;
                 //ageVerificationLogTextarea.append('Received event: ' + eventMessage.name + "\n");
                 switch (eventMessage.name) {
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_CHECK_IFRAME_LOADED:
-                        appendToLog('Iframe content was loaded');
+                        appendToLog("Iframe content was loaded");
                         avsInstance.emit(AvsFactoryIframeSdk.V1.Config.EVENT_STATUS_REQUEST);
                         break;
-                    case AvsFactoryIframeSdk.V1.Config.EVENT_ON_INITIAL_VERIFICATION_SUCCESS:
+                    case AvsFactoryIframeSdk.V1.Config
+                        .EVENT_ON_INITIAL_VERIFICATION_SUCCESS:
                         appendToLog('Verification already completed, delete the "isAgeVerified" cookie to retry');
                         Ajax.validateVerificationPayload({
                             verificationPayload: eventMessage.data.payload
                         }).then(function (data) {
-                            appendToLog('Cookie payload integrity check success, verification session id: ' + data.sessionId);
+                            appendToLog("Cookie payload integrity check success, verification session id: " +
+                                data.sessionId);
                         }, function (error) {
                             triggerError(error);
                         });
                         break;
-                    case AvsFactoryIframeSdk.V1.Config.EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
+                    case AvsFactoryIframeSdk.V1.Config
+                        .EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
                         avsInstance.emit(AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD);
-                        appendToLog('Cookie was not found, verification is initializing');
+                        appendToLog("Cookie was not found, verification is initializing");
                         break;
-                    case AvsFactoryIframeSdk.V1.Config.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR:
-                        appendToLog('Verification fatal error: ' + JSON.stringify(eventMessage.data));
+                    case AvsFactoryIframeSdk.V1.Config
+                        .EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR:
+                        appendToLog("Verification fatal error: " + JSON.stringify(eventMessage.data));
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_START_PAGE_LOADED:
-                        appendToLog('Resources started loading');
+                        appendToLog("Resources started loading");
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_RESOURCES_LOADED:
-                        appendToLog('Resources loaded, verification is ready!');
-                        exampleImplementationIframeJsButton.removeAttr('disabled');
+                        appendToLog("Resources loaded, verification is ready!");
+                        exampleImplementationIframeJsButton.removeAttr("disabled");
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_CLOSE_IFRAME:
                         avsInstance.iframeInstance.collapse();
-                        appendToLog('Verification iframe closed');
+                        appendToLog("Verification iframe closed");
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_VERIFICATION_SUCCESS:
-                        appendToLog('Verification completed successfully');
-                        exampleImplementationStartJsButton.attr('disabled', 'disabled');
-                        exampleImplementationIframeJsButton.attr('disabled', 'disabled');
+                        appendToLog("Verification completed successfully");
+                        exampleImplementationStartJsButton.attr("disabled", "disabled");
+                        exampleImplementationIframeJsButton.attr("disabled", "disabled");
                         Ajax.validateVerificationPayload({
                             verificationPayload: eventMessage.data.payload
                         }).then(function (data) {
-                            appendToLog('Cookie payload integrity check success, verification session id: ' + data.sessionId);
+                            appendToLog("Cookie payload integrity check success, verification session id: " +
+                                data.sessionId);
                         }, function (error) {
                             triggerError(error);
                         });
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_VERIFICATION_ERROR:
-                        appendToLog('Verification completed with error');
+                        appendToLog("Verification completed with error");
                         break;
                     default:
                     //
@@ -809,18 +831,18 @@ var AvsHome;
             };
         }
         function restartIframeVerification() {
-            exampleImplementationStartJsButton.removeAttr('disabled');
-            exampleImplementationIframeJsButton.attr('disabled', 'disabled');
+            exampleImplementationStartJsButton.removeAttr("disabled");
+            exampleImplementationIframeJsButton.attr("disabled", "disabled");
         }
     })(Action = AvsHome.Action || (AvsHome.Action = {}));
     var Ajax;
     (function (Ajax) {
         function getVerificationPayloadAndUrl(postData) {
-            return Core.Ajax.post(API_BASE_URL + 'getVerificationPayloadAndUrl', postData);
+            return Core.Ajax.post(API_BASE_URL + "getVerificationPayloadAndUrl", postData);
         }
         Ajax.getVerificationPayloadAndUrl = getVerificationPayloadAndUrl;
         function validateVerificationPayload(postData) {
-            return Core.Ajax.post(API_BASE_URL + 'validateVerificationPayload', postData);
+            return Core.Ajax.post(API_BASE_URL + "validateVerificationPayload", postData);
         }
         Ajax.validateVerificationPayload = validateVerificationPayload;
     })(Ajax = AvsHome.Ajax || (AvsHome.Ajax = {}));
