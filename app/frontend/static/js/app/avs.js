@@ -11158,17 +11158,17 @@ var Avs;
                 this.event = event;
             }
             PostMessage.prototype.emit = function (messageName, messageData) {
-                if (window.top === null) {
+                if (window.parent === null) {
                     return;
                 }
                 var messageDataObject = {};
                 if (messageData) {
                     messageDataObject = messageData;
                 }
-                window.top.postMessage({
+                window.parent.postMessage({
                     name: messageName,
                     data: messageDataObject
-                }, '*');
+                }, "*");
             };
             PostMessage.prototype.onMessage = function (message) {
                 return;
@@ -11178,12 +11178,12 @@ var Avs;
                 if (this.eventsWereInit) {
                     return;
                 }
-                window.addEventListener('message', function (event) {
+                window.addEventListener("message", function (event) {
                     _this.event.emit(PostMessage.ON_MESSAGE, event.data);
                 });
                 this.eventsWereInit = true;
             };
-            PostMessage.ON_MESSAGE = 'onPostMessage';
+            PostMessage.ON_MESSAGE = "onPostMessage";
             return PostMessage;
         }());
         Helper.PostMessage = PostMessage;
