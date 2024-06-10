@@ -119,21 +119,21 @@ var AvsFactoryIframeSdk;
                 this.eventsWereInit = false;
             }
             IframeHandler.prototype.create = function () {
-                this.iframeElement = document.createElement('iframe');
-                this.iframeElement.setAttribute('id', this.iframeSelectorId);
-                this.iframeElement.setAttribute('name', this.iframeSelectorId);
-                this.iframeElement.setAttribute('frameborder', '0');
-                this.iframeElement.setAttribute('allowtransparency', 'true');
-                this.iframeElement.style.width = '1px';
-                this.iframeElement.style.height = '1px';
-                this.iframeElement.style.position = 'fixed';
-                this.iframeElement.style.top = '0';
-                this.iframeElement.style.left = '0';
-                this.iframeElement.allow = 'camera http://localhost:3300';
+                this.iframeElement = document.createElement("iframe");
+                this.iframeElement.setAttribute("id", this.iframeSelectorId);
+                this.iframeElement.setAttribute("name", this.iframeSelectorId);
+                this.iframeElement.setAttribute("frameborder", "0");
+                this.iframeElement.setAttribute("allowtransparency", "true");
+                this.iframeElement.style.width = "1px";
+                this.iframeElement.style.height = "1px";
+                this.iframeElement.style.position = "fixed";
+                this.iframeElement.style.top = "0";
+                this.iframeElement.style.left = "0";
+                this.iframeElement.allow = "camera https://gocam.opale.io";
                 document.body.appendChild(this.iframeElement);
             };
             IframeHandler.prototype.destroy = function () {
-                this.iframeElement.setAttribute('src', '');
+                this.iframeElement.setAttribute("src", "");
                 this.iframeElement.remove();
                 this.iframeElement = null;
             };
@@ -151,15 +151,15 @@ var AvsFactoryIframeSdk;
                 this.opener.location.href = this.iframeLocationUrl;
             };
             IframeHandler.prototype.expand = function () {
-                this.iframeElement.style.width = '100%';
-                this.iframeElement.style.height = '100%';
-                this.iframeElement.style.opacity = '0.9';
-                this.iframeElement.style.zIndex = '999';
+                this.iframeElement.style.width = "100%";
+                this.iframeElement.style.height = "100%";
+                this.iframeElement.style.opacity = "0.9";
+                this.iframeElement.style.zIndex = "999";
             };
             IframeHandler.prototype.collapse = function () {
-                this.iframeElement.style.width = '1px';
-                this.iframeElement.style.height = '1px';
-                this.iframeElement.style.opacity = '1';
+                this.iframeElement.style.width = "1px";
+                this.iframeElement.style.height = "1px";
+                this.iframeElement.style.opacity = "1";
             };
             IframeHandler.prototype.initEvents = function () {
                 var _this = this;
