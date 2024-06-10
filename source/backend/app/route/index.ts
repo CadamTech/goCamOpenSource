@@ -90,9 +90,8 @@ export function load(app: Express.Application, storage: AvsStorageSession) {
 
       const urlToken = {
         protocol: config.httpServerProtocol,
-        hostname: config.httpServerHost,
+        hostname: config.httpForward,
         port: config.httpServerPort,
-        forward: config.httpForward,
         pathname: testPathRedirect,
         query: {
           d: requestPayload,
@@ -102,9 +101,8 @@ export function load(app: Express.Application, storage: AvsStorageSession) {
 
       const urlIframe = {
         protocol: config.httpServerProtocol,
-        hostname: config.httpServerHost,
+        hostname: config.httpForward,
         port: config.httpServerPort,
-        forward: config.httpForward,
         pathname: testPathIframe,
         query: {
           d: requestPayload,
