@@ -1,63 +1,50 @@
 namespace Avs {
+  export namespace Helper {
+    export class PostMessage {
+      static readonly ON_MESSAGE = "onPostMessage";
 
-	export namespace Helper {
+      public event: Avs.Event.Listener;
+      public eventsWereInit: boolean;
 
-		export class PostMessage {
+      constructor(event: Avs.Event.Listener) {
+        this.eventsWereInit = false;
+        this.event = event;
+      }
 
-			static readonly ON_MESSAGE = 'onPostMessage';
+      public emit(messageName: string, messageData?: any) {
+        if (window.parent === null) {
+          return;
+        }
 
-			public event: Avs.Event.Listener;
-			public eventsWereInit: boolean;
+        let messageDataObject = {};
+        if (messageData) {
+          messageDataObject = messageData;
+        }
 
-			constructor(event: Avs.Event.Listener) {
+        window.parent.postMessage(
+          {
+            name: messageName,
+            data: messageDataObject,
+          },
+          "*"
+        );
+      }
 
-				this.eventsWereInit = false;
-				this.event          = event;
+      public onMessage(message: any) {
+        return;
+      }
 
-			}
+      public initListener() {
+        if (this.eventsWereInit) {
+          return;
+        }
 
-			public emit(messageName: string, messageData?: any) {
+        window.addEventListener("message", (event: MessageEvent) => {
+          this.event.emit(PostMessage.ON_MESSAGE, event.data);
+        });
 
-				if (window.top === null) {
-					return;
-				}
-
-				let messageDataObject = {};
-				if (messageData) {
-					messageDataObject = messageData;
-				}
-
-				window.top.postMessage({
-					name: messageName,
-					data: messageDataObject
-				}, '*');
-
-			}
-
-			public onMessage(message: any) {
-
-				return;
-
-			}
-
-			public initListener() {
-
-				if (this.eventsWereInit) {
-					return;
-				}
-
-				window.addEventListener('message', (event: MessageEvent) => {
-
-					this.event.emit(PostMessage.ON_MESSAGE, event.data);
-
-				});
-
-				this.eventsWereInit = true;
-
-			}
-
-		}
-
-	}
-
+        this.eventsWereInit = true;
+      }
+    }
+  }
 }
