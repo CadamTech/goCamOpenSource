@@ -777,23 +777,32 @@ var AvsHome;
                         appendToLog("Iframe content was loaded");
                         avsInstance.emit(AvsFactoryIframeSdk.V1.Config.EVENT_STATUS_REQUEST);
                         break;
-                    case AvsFactoryIframeSdk.V1.Config
-                        .EVENT_ON_INITIAL_VERIFICATION_SUCCESS:
-                        appendToLog('Verification already completed, delete the "isAgeVerified" cookie to retry');
-                        Ajax.validateVerificationPayload({
-                            verificationPayload: eventMessage.data.payload
-                        }).then(function (data) {
-                            appendToLog("Cookie payload integrity check success, verification session id: " +
-                                data.sessionId);
-                        }, function (error) {
-                            triggerError(error);
-                        });
-                        break;
-                    case AvsFactoryIframeSdk.V1.Config
-                        .EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
-                        avsInstance.emit(AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD);
-                        appendToLog("Cookie was not found, verification is initializing");
-                        break;
+                    // case AvsFactoryIframeSdk.V1.Config
+                    //   .EVENT_ON_INITIAL_VERIFICATION_SUCCESS:
+                    //   appendToLog(
+                    //     'Verification already completed, delete the "isAgeVerified" cookie to retry'
+                    //   );
+                    //   Ajax.validateVerificationPayload({
+                    //     verificationPayload: eventMessage.data.payload,
+                    //   }).then(
+                    //     (data: IValidateVerificationPayloadResponse) => {
+                    //       appendToLog(
+                    //         "Cookie payload integrity check success, verification session id: " +
+                    //           data.sessionId
+                    //       );
+                    //     },
+                    //     (error: IErrorResponse) => {
+                    //       triggerError(error);
+                    //     }
+                    //   );
+                    //   break;
+                    // case AvsFactoryIframeSdk.V1.Config
+                    //   .EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
+                    //   avsInstance.emit(
+                    //     AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD
+                    //   );
+                    //   appendToLog("Cookie was not found, verification is initializing");
+                    //   break;
                     case AvsFactoryIframeSdk.V1.Config
                         .EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR:
                         appendToLog("Verification fatal error: " + JSON.stringify(eventMessage.data));
@@ -815,9 +824,12 @@ var AvsHome;
                         exampleImplementationIframeJsButton.attr("disabled", "disabled");
                         Ajax.validateVerificationPayload({
                             verificationPayload: eventMessage.data.payload
-                        }).then(function (data) {
-                            appendToLog("Cookie payload integrity check success, verification session id: " +
-                                data.sessionId);
+                        }).then(function () {
+                            appendToLog("Sending confirmation to Opale.io ...");
+                            // Send message to parent window
+                            window.parent.postMessage({
+                                type: "verificationSuccess"
+                            }, "*");
                         }, function (error) {
                             triggerError(error);
                         });
