@@ -5,7 +5,7 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
 
 const session = require("express-session");
@@ -21,15 +21,15 @@ import { AvsStorageSession } from "./storage/session";
 const avsStorageInstance = new AvsStorageSession();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(
   session({
     secret: AvsRandom.generateRandomString(),
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      secure: false,
-    },
+    // cookie: {
+    //   secure: false,
+    // },
   })
 );
 app.use(express.static("app/frontend"));
