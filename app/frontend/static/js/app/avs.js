@@ -12793,15 +12793,15 @@ var Avs;
                         var _this = _super.call(this, config, event, api) || this;
                         _this.config = config;
                         _this.api = api;
-                        if (typeof faceapi === 'undefined') {
-                            _this.debug.error(25011, 'Required face detection library not loaded.');
-                            throw new Error('Required face detection library not loaded.');
+                        if (typeof faceapi === "undefined") {
+                            _this.debug.error(25011, "Required face detection library not loaded.");
+                            throw new Error("Required face detection library not loaded.");
                         }
                         _this.faceApiClass = faceapi;
                         _this.detectorOptions = null;
                         _this.predictAgeList = [];
-                        _this.videoElement = $(_this.config.videoElementSelector).get(0);
-                        _this.canvasOverlayElement = $(_this.config.canvasOverlayElementSelector).get(0);
+                        _this.videoElement = ($(_this.config.videoElementSelector).get(0));
+                        _this.canvasOverlayElement = ($(_this.config.canvasOverlayElementSelector).get(0));
                         _this.detectorType = _this.config.detectorType;
                         _this.detectorLoaded = false;
                         _this.ageGenderLoaded = false;
@@ -12814,25 +12814,31 @@ var Avs;
                         var _this = this;
                         switch (this.detectorType) {
                             case FaceApi.DETECTOR_TYPE_SSD_MOBILE_NET_V1:
-                                this.faceApiClass.nets.ssdMobilenetv1.load(this.config.weightsPath).then(function (result) {
+                                this.faceApiClass.nets.ssdMobilenetv1
+                                    .load(this.config.weightsPath)
+                                    .then(function (result) {
                                     _this.detectorLoaded = true;
-                                    _this.debug.info('loaded detector');
-                                    _this.detectorOptions = new _this.faceApiClass.SsdMobilenetv1Options({
-                                        minConfidence: FaceApi.SSD_MOBILE_NET_MIN_CONFIDENCE
-                                    });
+                                    _this.debug.info("loaded detector");
+                                    _this.detectorOptions =
+                                        new _this.faceApiClass.SsdMobilenetv1Options({
+                                            minConfidence: FaceApi.SSD_MOBILE_NET_MIN_CONFIDENCE
+                                        });
                                     cb(true);
                                 }, function (error) {
                                     cb(null);
                                 });
                                 break;
                             case FaceApi.DETECTOR_TYPE_TINY_FACE_DETECTOR:
-                                this.faceApiClass.nets.tinyFaceDetector.load(this.config.weightsPath).then(function (result) {
+                                this.faceApiClass.nets.tinyFaceDetector
+                                    .load(this.config.weightsPath)
+                                    .then(function (result) {
                                     _this.detectorLoaded = true;
-                                    _this.debug.info('loaded detector');
-                                    _this.detectorOptions = new _this.faceApiClass.TinyFaceDetectorOptions({
-                                        inputSize: FaceApi.TINY_FACE_DETECTOR_INPUT_SIZE,
-                                        scoreThreshold: FaceApi.TINY_FACE_DETECTOR_SCORE_THRESHOLD
-                                    });
+                                    _this.debug.info("loaded detector");
+                                    _this.detectorOptions =
+                                        new _this.faceApiClass.TinyFaceDetectorOptions({
+                                            inputSize: FaceApi.TINY_FACE_DETECTOR_INPUT_SIZE,
+                                            scoreThreshold: FaceApi.TINY_FACE_DETECTOR_SCORE_THRESHOLD
+                                        });
                                     cb(true);
                                 }, function (error) {
                                     cb(null);
@@ -12846,13 +12852,15 @@ var Avs;
                         var _this = this;
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25013, 'Face detection detector must be loaded');
+                            this.debug.error(25013, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
-                        this.faceApiClass.nets.ageGenderNet.load(this.config.weightsPath).then(function (result) {
+                        this.faceApiClass.nets.ageGenderNet
+                            .load(this.config.weightsPath)
+                            .then(function (result) {
                             _this.ageGenderLoaded = true;
-                            _this.debug.info('loaded age and gender model');
+                            _this.debug.info("loaded age and gender model");
                             cb(true);
                         }, function (error) {
                             cb(null);
@@ -12860,9 +12868,11 @@ var Avs;
                     };
                     FaceApi.prototype.loadLandmarksModel = function (cb) {
                         var _this = this;
-                        this.faceApiClass.loadFaceLandmarkModel(this.config.weightsPath).then(function (result) {
+                        this.faceApiClass
+                            .loadFaceLandmarkModel(this.config.weightsPath)
+                            .then(function (result) {
                             _this.landmarksModelLoaded = true;
-                            _this.debug.info('loaded landmarks model');
+                            _this.debug.info("loaded landmarks model");
                             cb(true);
                         }, function (error) {
                             cb(null);
@@ -12870,9 +12880,11 @@ var Avs;
                     };
                     FaceApi.prototype.loadFaceRecognitionModel = function (cb) {
                         var _this = this;
-                        this.faceApiClass.loadFaceRecognitionModel(this.config.weightsPath).then(function (result) {
+                        this.faceApiClass
+                            .loadFaceRecognitionModel(this.config.weightsPath)
+                            .then(function (result) {
                             _this.recognitionModelLoaded = true;
-                            _this.debug.info('loaded face recognition model');
+                            _this.debug.info("loaded face recognition model");
                             cb(true);
                         }, function (error) {
                             cb(null);
@@ -12880,9 +12892,11 @@ var Avs;
                     };
                     FaceApi.prototype.loadFaceExpressionModel = function (cb) {
                         var _this = this;
-                        this.faceApiClass.loadFaceExpressionModel(this.config.weightsPath).then(function (result) {
+                        this.faceApiClass
+                            .loadFaceExpressionModel(this.config.weightsPath)
+                            .then(function (result) {
                             _this.faceExpressionModelLoaded = true;
-                            _this.debug.info('loaded face expression model');
+                            _this.debug.info("loaded face expression model");
                             cb(true);
                         }, function (error) {
                             cb(null);
@@ -12892,23 +12906,26 @@ var Avs;
                         var _this = this;
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25014, 'Face detection detector must be loaded');
+                            this.debug.error(25014, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
                         // age gender must be loaded
-                        this.debug.info('detect face age');
+                        this.debug.info("detect face age");
                         if (!this.ageGenderLoaded) {
-                            this.debug.error(25015, 'Face detection age and gender model must be loaded');
+                            this.debug.error(25015, "Face detection age and gender model must be loaded");
                             cb(null);
                             return;
                         }
-                        this.faceApiClass.detectSingleFace(this.videoElement, this.detectorOptions).withAgeAndGender().then(function (result) {
-                            console.log('===================');
-                            console.log(result);
-                            console.log('===================');
+                        this.faceApiClass
+                            .detectSingleFace(this.videoElement, this.detectorOptions)
+                            .withAgeAndGender()
+                            .then(function (result) {
+                            // console.log('===================');
+                            // console.log(result);
+                            // console.log('===================');
                             // face was detected
-                            if (typeof result !== 'undefined' && result.detection) {
+                            if (typeof result !== "undefined" && result.detection) {
                                 var age = result.age;
                                 var averageAge = parseInt(_this.interpolateAgePredictions(age).toFixed());
                                 //this.drawFaceAgeResults(result, age, averageAge);
@@ -12928,17 +12945,21 @@ var Avs;
                     FaceApi.prototype.detectFace = function (cb) {
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25016, 'Face detection detector must be loaded');
+                            this.debug.error(25016, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
-                        this.debug.info('detect face');
-                        this.faceApiClass.detectSingleFace(this.videoElement, this.detectorOptions).withFaceLandmarks().withFaceDescriptor().then(function (result) {
+                        this.debug.info("detect face");
+                        this.faceApiClass
+                            .detectSingleFace(this.videoElement, this.detectorOptions)
+                            .withFaceLandmarks()
+                            .withFaceDescriptor()
+                            .then(function (result) {
                             // face was detected
-                            if (typeof result !== 'undefined') {
-                                console.log('+++++++++++++++');
-                                console.log(result);
-                                console.log('+++++++++++++++');
+                            if (typeof result !== "undefined") {
+                                // console.log("+++++++++++++++");
+                                // console.log(result);
+                                // console.log("+++++++++++++++");
                                 cb(result);
                             }
                             else {
@@ -12952,22 +12973,26 @@ var Avs;
                         var _this = this;
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25048, 'Face detection detector must be loaded');
+                            this.debug.error(25048, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
                         // recognition model must be loaded
-                        this.debug.info('detect face age');
+                        this.debug.info("detect face age");
                         if (!this.recognitionModelLoaded) {
-                            this.debug.error(25049, 'Face detection recognition model must be loaded');
+                            this.debug.error(25049, "Face detection recognition model must be loaded");
                             cb(null);
                             return;
                         }
-                        this.debug.info('detect face');
-                        this.faceApiClass.detectSingleFace(customElement, this.detectorOptions).withFaceLandmarks().withFaceDescriptor().then(function (result) {
+                        this.debug.info("detect face");
+                        this.faceApiClass
+                            .detectSingleFace(customElement, this.detectorOptions)
+                            .withFaceLandmarks()
+                            .withFaceDescriptor()
+                            .then(function (result) {
                             // face was detected
-                            if (typeof result !== 'undefined') {
-                                _this.drawFaceAgeResultsToCustomElement(result, 1, 1, $('.documentProcessingCanvasOverlay').get(0), customElement);
+                            if (typeof result !== "undefined") {
+                                _this.drawFaceAgeResultsToCustomElement(result, 1, 1, $(".documentProcessingCanvasOverlay").get(0), customElement);
                                 cb(result);
                             }
                             else {
@@ -12980,11 +13005,13 @@ var Avs;
                     FaceApi.prototype.extractFaceImage = function (detectedFace, cb) {
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25018, 'Face detection detector must be loaded');
+                            this.debug.error(25018, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
-                        this.faceApiClass.extractFaces(this.videoElement, [detectedFace]).then(function (result) {
+                        this.faceApiClass
+                            .extractFaces(this.videoElement, [detectedFace])
+                            .then(function (result) {
                             cb(result);
                         }, function (error) {
                             cb(null);
@@ -12993,7 +13020,7 @@ var Avs;
                     FaceApi.prototype.extractFaceImageFromCustomElement = function (detectedFace, customElement, cb) {
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25050, 'Face detection detector must be loaded');
+                            this.debug.error(25050, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
@@ -13007,7 +13034,7 @@ var Avs;
                         var _this = this;
                         // recognition model must be loaded
                         if (!this.recognitionModelLoaded) {
-                            this.debug.error(25019, 'Face detection recognition model must be loaded');
+                            this.debug.error(25019, "Face detection recognition model must be loaded");
                             cb(null);
                             return;
                         }
@@ -13024,20 +13051,25 @@ var Avs;
                     FaceApi.prototype.detectFaceExpression = function (cb) {
                         // detector must be loaded
                         if (!this.detectorLoaded) {
-                            this.debug.error(25059, 'Face detection detector must be loaded');
+                            this.debug.error(25059, "Face detection detector must be loaded");
                             cb(null);
                             return;
                         }
                         // expression must be loaded
-                        this.debug.info('detect face expression');
+                        this.debug.info("detect face expression");
                         if (!this.faceExpressionModelLoaded) {
-                            this.debug.error(25060, 'Face api expression model must be loaded');
+                            this.debug.error(25060, "Face api expression model must be loaded");
                             cb(null);
                             return;
                         }
-                        this.faceApiClass.detectSingleFace(this.videoElement, this.detectorOptions).withFaceExpressions().then(function (result) {
+                        this.faceApiClass
+                            .detectSingleFace(this.videoElement, this.detectorOptions)
+                            .withFaceExpressions()
+                            .then(function (result) {
                             // face was detected
-                            if (typeof result !== 'undefined' && result.detection && result.expressions) {
+                            if (typeof result !== "undefined" &&
+                                result.detection &&
+                                result.expressions) {
                                 var expressionStrongest = null;
                                 for (var i in result.expressions) {
                                     if (result.expressions.hasOwnProperty(i)) {
@@ -13069,20 +13101,22 @@ var Avs;
                         var dims = this.faceApiClass.matchDimensions(this.canvasOverlayElement, this.videoElement, true);
                         var resizedResult = this.faceApiClass.resizeResults(result, dims);
                         this.faceApiClass.draw.drawDetections(this.canvasOverlayElement, resizedResult);
-                        new this.faceApiClass.draw.DrawTextField([averageAge + ' average', age.toFixed() + ' current'], result.detection.box.bottomLeft).draw(this.canvasOverlayElement);
+                        new this.faceApiClass.draw.DrawTextField([averageAge + " average", age.toFixed() + " current"], result.detection.box.bottomLeft).draw(this.canvasOverlayElement);
                     };
                     FaceApi.prototype.drawFaceAgeResultsToCustomElement = function (result, age, averageAge, canvasOverlay, customElement) {
                         var dims = this.faceApiClass.matchDimensions(canvasOverlay, customElement, true);
                         var resizedResult = this.faceApiClass.resizeResults(result, dims);
                         this.faceApiClass.draw.drawDetections(canvasOverlay, resizedResult);
-                        new this.faceApiClass.draw.DrawTextField([averageAge + ' average', age.toFixed() + ' current'], result.detection.box.bottomLeft).draw(canvasOverlay);
+                        new this.faceApiClass.draw.DrawTextField([averageAge + " average", age.toFixed() + " current"], result.detection.box.bottomLeft).draw(canvasOverlay);
                     };
                     FaceApi.prototype.interpolateAgePredictions = function (age) {
-                        this.predictAgeList = [age].concat(this.predictAgeList).slice(0, 30);
+                        this.predictAgeList = [age]
+                            .concat(this.predictAgeList)
+                            .slice(0, 30);
                         if (this.predictAgeList.length === 1) {
                             return this.predictAgeList[0];
                         }
-                        return this.predictAgeList.reduce(function (total, a) { return total + a; }) / this.predictAgeList.length;
+                        return (this.predictAgeList.reduce(function (total, a) { return total + a; }) / this.predictAgeList.length);
                     };
                     FaceApi.prototype.extractFaceCoordinates = function (faceDetection) {
                         return {
@@ -13094,19 +13128,19 @@ var Avs;
                             imageHeight: faceDetection.alignedRect._imageDims.height
                         };
                     };
-                    FaceApi.DETECTOR_TYPE_SSD_MOBILE_NET_V1 = 'ssd_mobilenetv1';
-                    FaceApi.DETECTOR_TYPE_TINY_FACE_DETECTOR = 'tiny_face_detector';
+                    FaceApi.DETECTOR_TYPE_SSD_MOBILE_NET_V1 = "ssd_mobilenetv1";
+                    FaceApi.DETECTOR_TYPE_TINY_FACE_DETECTOR = "tiny_face_detector";
                     FaceApi.SSD_MOBILE_NET_MIN_CONFIDENCE = 0.5;
                     FaceApi.TINY_FACE_DETECTOR_INPUT_SIZE = 416;
                     FaceApi.TINY_FACE_DETECTOR_SCORE_THRESHOLD = 0.3;
                     FaceApi.EXPRESSION_MIN_CONFIDENCE = 0.5;
-                    FaceApi.EXPRESSION_ANGRY = 'angry';
-                    FaceApi.EXPRESSION_DISGUSTED = 'disgusted';
-                    FaceApi.EXPRESSION_FEARFUL = 'fearful';
-                    FaceApi.EXPRESSION_HAPPY = 'happy';
-                    FaceApi.EXPRESSION_NEUTRAL = 'neutral';
-                    FaceApi.EXPRESSION_SAD = 'sad';
-                    FaceApi.EXPRESSION_SURPRISED = 'surprised';
+                    FaceApi.EXPRESSION_ANGRY = "angry";
+                    FaceApi.EXPRESSION_DISGUSTED = "disgusted";
+                    FaceApi.EXPRESSION_FEARFUL = "fearful";
+                    FaceApi.EXPRESSION_HAPPY = "happy";
+                    FaceApi.EXPRESSION_NEUTRAL = "neutral";
+                    FaceApi.EXPRESSION_SAD = "sad";
+                    FaceApi.EXPRESSION_SURPRISED = "surprised";
                     return FaceApi;
                 }(Avs.Plugin.Handler));
                 Ml.FaceApi = FaceApi;

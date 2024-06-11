@@ -6,21 +6,23 @@ const http = require("http");
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-// const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const favicon = require("serve-favicon");
+const cors = require("cors");
+app.use(cors());
 const session = require("express-session");
 const random_1 = require("./lib/random");
 const session_1 = require("./storage/session");
 const avsStorageInstance = new session_1.AvsStorageSession();
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(cookieParser());
 app.use(session({
     secret: random_1.AvsRandom.generateRandomString(),
     resave: false,
     saveUninitialized: true,
-    // cookie: {
-    //   secure: false,
-    // },
+    cookie: {
+        secure: false,
+    },
 }));
 app.use(express.static("app/frontend"));
 app.use(favicon(path.join(__dirname, "../frontend/static", "favicon.ico")));
