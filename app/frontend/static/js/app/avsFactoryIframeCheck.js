@@ -61,7 +61,7 @@ var AvsFactoryIframeCheck;
                 if (e instanceof Error) {
                   errorMessage = e.message;
                 }
-                window.top.postMessage(
+                window.parent.postMessage(
                   {
                     name: Core.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR,
                     data: {
