@@ -1790,23 +1790,28 @@ var AvsFactory;
             function Config() {
             }
             Config.create = function (config) {
-                Config.DEFAULT_DEBUG_LEVEL = config.defaultBugLevel || Config.DEFAULT_DEBUG_LEVEL;
-                Config.API_BASE_ENDPOINT = config.apiBaseEndpoint || Config.API_BASE_ENDPOINT;
-                Config.POLLING_BASE_ENDPOINT = config.pollingBaseEndpoint || Config.POLLING_BASE_ENDPOINT;
-                Config.VERIFICATION_VERSION = config.verificationVersion || Config.VERIFICATION_VERSION;
+                Config.DEFAULT_DEBUG_LEVEL =
+                    config.defaultBugLevel || Config.DEFAULT_DEBUG_LEVEL;
+                Config.API_BASE_ENDPOINT =
+                    config.apiBaseEndpoint || Config.API_BASE_ENDPOINT;
+                Config.POLLING_BASE_ENDPOINT =
+                    config.pollingBaseEndpoint || Config.POLLING_BASE_ENDPOINT;
+                Config.VERIFICATION_VERSION =
+                    config.verificationVersion || Config.VERIFICATION_VERSION;
                 Config.PARTNER_ID = config.partnerId || Config.PARTNER_ID;
                 Config.PAYLOAD = config.payload || Config.PAYLOAD;
                 Config.SESSION_ID = config.sessionId || Config.SESSION_ID;
-                Config.PARTNER_COLOR_CONFIG = config.partnerColorConfig || Config.PARTNER_COLOR_CONFIG;
+                Config.PARTNER_COLOR_CONFIG =
+                    config.partnerColorConfig || Config.PARTNER_COLOR_CONFIG;
             };
-            Config.MAIN_CONTAINER_SELECTOR = '#avsMainContainer';
-            Config.START_PAGE_LAYER_SELECTOR = '#startPage';
-            Config.SELFIE_AGE_DETECTION_INTRO_LAYER_SELECTOR = '#selfieAgeDetectionIntro';
-            Config.SELFIE_AGE_DETECTION_PAGE_LAYER_SELECTOR = '#selfieAgeDetectionPage';
-            Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER_SELECTOR = '#scanIdAgeVerificationIntro';
-            Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER_SELECTOR = '#scanIdAgeVerificationPage';
-            Config.RESULT_PAGE_SUCCESS_LAYER_SELECTOR = '#resultPageSuccess';
-            Config.RESULT_PAGE_FAIL_LAYER_SELECTOR = '#resultPageFail';
+            Config.MAIN_CONTAINER_SELECTOR = "#avsMainContainer";
+            Config.START_PAGE_LAYER_SELECTOR = "#startPage";
+            Config.SELFIE_AGE_DETECTION_INTRO_LAYER_SELECTOR = "#selfieAgeDetectionIntro";
+            Config.SELFIE_AGE_DETECTION_PAGE_LAYER_SELECTOR = "#selfieAgeDetectionPage";
+            Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER_SELECTOR = "#scanIdAgeVerificationIntro";
+            Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER_SELECTOR = "#scanIdAgeVerificationPage";
+            Config.RESULT_PAGE_SUCCESS_LAYER_SELECTOR = "#resultPageSuccess";
+            Config.RESULT_PAGE_FAIL_LAYER_SELECTOR = "#resultPageFail";
             Config.MAIN_CONTAINER_LAYER = $(Config.MAIN_CONTAINER_SELECTOR);
             Config.START_PAGE_LAYER = $(Config.START_PAGE_LAYER_SELECTOR);
             Config.SELFIE_AGE_DETECTION_INTRO_LAYER = $(Config.SELFIE_AGE_DETECTION_INTRO_LAYER_SELECTOR);
@@ -1815,34 +1820,35 @@ var AvsFactory;
             Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER = $(Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER_SELECTOR);
             Config.RESULT_PAGE_SUCCESS_LAYER = $(Config.RESULT_PAGE_SUCCESS_LAYER_SELECTOR);
             Config.RESULT_PAGE_FAIL_LAYER = $(Config.RESULT_PAGE_FAIL_LAYER_SELECTOR);
-            Config.FACE_API_PRELOADER_NAME = 'faceApiIncludes';
-            Config.TESSERACT_PRELOADER_NAME = 'tesseractIncludes';
-            Config.VERIFICATION_TYPE_DEFAULT = Avs.Entity.VerificationStepGlobal.VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL;
-            Config.EVENT_STATUS_REQUEST = 'avs.statusRequest';
-            Config.EVENT_ON_VERIFICATION_DONE = 'avs.onVerificationDone';
-            Config.EVENT_VERIFICATION_START = 'avs.verificationStart';
-            Config.EVENT_RESOURCE_PRELOAD = 'avs.resourcePreload';
-            Config.EVENT_ON_START_PAGE_LOADED = 'avs.onStartPageLoaded';
-            Config.EVENT_ON_RESOURCES_LOADED = 'avs.onResourcesLoaded';
-            Config.EVENT_SET_VERIFICATION_TYPE = 'avs.setVerificationType';
-            Config.EVENT_ON_CLOSE_IFRAME = 'avs.onCloseIframe';
-            Config.EVENT_ON_INITIAL_VERIFICATION_SUCCESS = 'avs.onInitialVerificationSuccess';
-            Config.EVENT_ON_INITIAL_VERIFICATION_ERROR = 'avs.onInitialVerificationError';
-            Config.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR = 'avs.onInitialVerificationFatalError';
-            Config.EVENT_ON_VERIFICATION_SUCCESS = 'avs.onVerificationSuccess';
-            Config.EVENT_ON_VERIFICATION_ERROR = 'avs.onVerificationError';
+            Config.FACE_API_PRELOADER_NAME = "faceApiIncludes";
+            Config.TESSERACT_PRELOADER_NAME = "tesseractIncludes";
+            Config.VERIFICATION_TYPE_DEFAULT = Avs.Entity.VerificationStepGlobal
+                .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL;
+            Config.EVENT_STATUS_REQUEST = "avs.statusRequest";
+            Config.EVENT_ON_VERIFICATION_DONE = "avs.onVerificationDone";
+            Config.EVENT_VERIFICATION_START = "avs.verificationStart";
+            Config.EVENT_RESOURCE_PRELOAD = "avs.resourcePreload";
+            Config.EVENT_ON_START_PAGE_LOADED = "avs.onStartPageLoaded";
+            Config.EVENT_ON_RESOURCES_LOADED = "avs.onResourcesLoaded";
+            Config.EVENT_SET_VERIFICATION_TYPE = "avs.setVerificationType";
+            Config.EVENT_ON_CLOSE_IFRAME = "avs.onCloseIframe";
+            Config.EVENT_ON_INITIAL_VERIFICATION_SUCCESS = "avs.onInitialVerificationSuccess";
+            Config.EVENT_ON_INITIAL_VERIFICATION_ERROR = "avs.onInitialVerificationError";
+            Config.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR = "avs.onInitialVerificationFatalError";
+            Config.EVENT_ON_VERIFICATION_SUCCESS = "avs.onVerificationSuccess";
+            Config.EVENT_ON_VERIFICATION_ERROR = "avs.onVerificationError";
             Config.VERIFICATION_VERSION_STANDARD_V1 = 1;
             Config.VERIFICATION_VERSION_IFRAME_V1 = 2;
             Config.VERIFICATION_VERSION = Config.VERIFICATION_VERSION_STANDARD_V1;
             Config.SESSION_ID = null;
             Config.PARTNER_COLOR_CONFIG = null;
             Config.DEFAULT_DEBUG_LEVEL = 4;
-            Config.API_BASE_ENDPOINT = '';
-            Config.KEY_LOCAL_STORAGE_TERMS_AGREED = 'GoCamLocalStorageTermsWereAgreed';
+            Config.API_BASE_ENDPOINT = "";
+            Config.KEY_LOCAL_STORAGE_TERMS_AGREED = "GoCamLocalStorageTermsWereAgreed";
             Config.PARTNER_ID = 0;
-            Config.PAYLOAD = '';
-            Config.CREDIT_CARD_VERIFICATION_ENDPOINT = '';
-            Config.POLLING_BASE_ENDPOINT = '/result';
+            Config.PAYLOAD = "";
+            Config.CREDIT_CARD_VERIFICATION_ENDPOINT = "";
+            Config.POLLING_BASE_ENDPOINT = "/result";
             return Config;
         }());
         StartPage.Config = Config;

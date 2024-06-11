@@ -34,10 +34,8 @@ namespace AvsFactoryIframeSdk {
         this.iframeElement.style.top = "0";
         this.iframeElement.style.left = "0";
         this.iframeElement.allow = "camera; microphone; https://gocam.opale.io";
-        this.iframeElement.allow =
-          "camera; microphone; https://authenticator-dev.opale.io/";
-        this.iframeElement.allow =
-          "camera; microphone; https://authenticator.opale.io/";
+        // console.log(this.iframeLocationUrl);
+        // this.iframeElement.src = this.iframeLocationUrl;
         document.body.appendChild(this.iframeElement);
       }
 
