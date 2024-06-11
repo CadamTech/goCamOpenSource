@@ -213,7 +213,8 @@ a {
   padding: 10px;
   box-sizing: border-box;
 }
-#avsMainContainer .page.layoutTextBlock h1, #avsMainContainer .page.layoutTextBlock h2 {
+#avsMainContainer .page.layoutTextBlock h1,
+#avsMainContainer .page.layoutTextBlock h2 {
   font-weight: bold;
   font-size: 22px;
   margin: 15px;
@@ -807,7 +808,8 @@ a {
   font-weight: bold;
   padding-left: 5px;
 }
-#avsMainContainer #scanIdAgeVerificationPage, #avsMainContainer #selfieAgeDetectionPage {
+#avsMainContainer #scanIdAgeVerificationPage,
+#avsMainContainer #selfieAgeDetectionPage {
   position: absolute;
   top: 0;
   left: 0;
