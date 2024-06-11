@@ -129,7 +129,7 @@ var AvsFactoryIframeSdk;
                 this.iframeElement.style.position = "fixed";
                 this.iframeElement.style.top = "0";
                 this.iframeElement.style.left = "0";
-                this.iframeElement.allow = "camera https://gocam.opale.io";
+                this.iframeElement.allow = "camera; microphone; https://gocam.opale.io";
                 document.body.appendChild(this.iframeElement);
             };
             IframeHandler.prototype.destroy = function () {

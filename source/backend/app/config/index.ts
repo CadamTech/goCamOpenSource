@@ -2,7 +2,7 @@ require("dotenv").config();
 const configObject = {
   httpServerProtocol: process.env.PROTOCOL || "http",
   httpServerHost: process.env.HOST || "localhost",
-  httpServerPort: process.env.PORT || 3000,
+  httpServerPort: process.env.PORT || 3300,
   httpForward: process.env.FORWARD || "localhost:3300",
 
   htmlFilePath: "./app/frontend/views/",
