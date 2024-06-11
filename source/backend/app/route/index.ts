@@ -101,7 +101,7 @@ export function load(app: Express.Application, storage: AvsStorageSession) {
 
       const urlIframe = {
         protocol: config.httpServerProtocol,
-        hostname: config.httpServerHost,
+        hostname: config.httpForward,
         // port: config.httpServerPort,
         pathname: testPathIframe,
         query: {

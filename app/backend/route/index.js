@@ -85,7 +85,7 @@ function load(app, storage) {
         const urlTokenString = URL.format(urlToken);
         const urlIframe = {
             protocol: config_1.config.httpServerProtocol,
-            hostname: config_1.config.httpServerHost,
+            hostname: config_1.config.httpForward,
             // port: config.httpServerPort,
             pathname: testPathIframe,
             query: {
