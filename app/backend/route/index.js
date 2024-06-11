@@ -76,7 +76,7 @@ function load(app, storage) {
         const urlToken = {
             protocol: config_1.config.httpServerProtocol,
             hostname: config_1.config.httpForward,
-            port: config_1.config.httpServerHost,
+            // port: config.httpServerHost,
             pathname: testPathRedirect,
             query: {
                 d: requestPayload,
@@ -86,7 +86,7 @@ function load(app, storage) {
         const urlIframe = {
             protocol: config_1.config.httpServerProtocol,
             hostname: config_1.config.httpServerHost,
-            port: config_1.config.httpServerPort,
+            // port: config.httpServerPort,
             pathname: testPathIframe,
             query: {
                 d: requestPayload,
