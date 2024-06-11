@@ -75,7 +75,7 @@ namespace AvsFactoryIframeCheck {
                   errorMessage = e.message;
                 }
 
-                window.parent.postMessage(
+                window.top.postMessage(
                   {
                     name: Core.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR,
                     data: {

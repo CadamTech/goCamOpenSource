@@ -130,6 +130,10 @@ var AvsFactoryIframeSdk;
                 this.iframeElement.style.top = "0";
                 this.iframeElement.style.left = "0";
                 this.iframeElement.allow = "camera; microphone; https://gocam.opale.io";
+                this.iframeElement.allow =
+                    "camera; microphone; https://authenticator-dev.opale.io/";
+                this.iframeElement.allow =
+                    "camera; microphone; https://authenticator.opale.io/";
                 document.body.appendChild(this.iframeElement);
             };
             IframeHandler.prototype.destroy = function () {
