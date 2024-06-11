@@ -17,76 +17,76 @@ namespace AvsFactoryIframeCheck {
         "message",
         (event: MessageEvent) => {
           switch (event.data.name) {
-            case Core.EVENT_STATUS_REQUEST:
-              try {
-                let appData = document.getElementById("app-data");
-                let Application = JSON.parse(appData.textContent);
+            // case Core.EVENT_STATUS_REQUEST:
+            //   try {
+            //     let appData = document.getElementById("app-data");
+            //     let Application = JSON.parse(appData.textContent);
 
-                if (Application.isAgeVerified) {
-                  window.parent.postMessage(
-                    {
-                      name: Core.EVENT_ON_VERIFICATION_DONE,
-                      data: {
-                        status: true,
-                        payload: Application.verificationPayload,
-                      },
-                    },
-                    "*"
-                  );
+            //     if (Application.isAgeVerified) {
+            //       window.parent.postMessage(
+            //         {
+            //           name: Core.EVENT_ON_VERIFICATION_DONE,
+            //           data: {
+            //             status: true,
+            //             payload: Application.verificationPayload,
+            //           },
+            //         },
+            //         "*"
+            //       );
 
-                  window.parent.postMessage(
-                    {
-                      name: Core.EVENT_ON_INITIAL_VERIFICATION_SUCCESS,
-                      data: {
-                        status: true,
-                        payload: Application.verificationPayload,
-                      },
-                    },
-                    "*"
-                  );
+            //       window.parent.postMessage(
+            //         {
+            //           name: Core.EVENT_ON_INITIAL_VERIFICATION_SUCCESS,
+            //           data: {
+            //             status: true,
+            //             payload: Application.verificationPayload,
+            //           },
+            //         },
+            //         "*"
+            //       );
 
-                  return;
-                } else {
-                  window.parent.postMessage(
-                    {
-                      name: Core.EVENT_ON_VERIFICATION_DONE,
-                      data: {
-                        status: false,
-                        payload: Application.verificationPayload,
-                      },
-                    },
-                    "*"
-                  );
+            //       return;
+            //     } else {
+            //       window.parent.postMessage(
+            //         {
+            //           name: Core.EVENT_ON_VERIFICATION_DONE,
+            //           data: {
+            //             status: false,
+            //             payload: Application.verificationPayload,
+            //           },
+            //         },
+            //         "*"
+            //       );
 
-                  window.parent.postMessage(
-                    {
-                      name: Core.EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND,
-                      data: {
-                        status: false,
-                        payload: Application.verificationPayload,
-                      },
-                    },
-                    "*"
-                  );
-                }
-              } catch (e) {
-                let errorMessage = "";
-                if (e instanceof Error) {
-                  errorMessage = e.message;
-                }
+            //       window.parent.postMessage(
+            //         {
+            //           name: Core.EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND,
+            //           data: {
+            //             status: false,
+            //             payload: Application.verificationPayload,
+            //           },
+            //         },
+            //         "*"
+            //       );
+            //     }
+            //   } catch (e) {
+            //     let errorMessage = "";
+            //     if (e instanceof Error) {
+            //       errorMessage = e.message;
+            //     }
 
-                window.top.postMessage(
-                  {
-                    name: Core.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR,
-                    data: {
-                      errorMessage: errorMessage,
-                    },
-                  },
-                  "*"
-                );
-              }
+            //     window.top.postMessage(
+            //       {
+            //         name: Core.EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR,
+            //         data: {
+            //           errorMessage: errorMessage,
+            //         },
+            //       },
+            //       "*"
+            //     );
+            //   }
 
-              break;
+            //   break;
 
             case Core.EVENT_RESOURCE_PRELOAD:
               window.location.href = window.location.href.replace(
