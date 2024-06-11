@@ -34,7 +34,7 @@ namespace AvsFactoryIframeSdk {
         this.iframeElement.style.top = "0";
         this.iframeElement.style.left = "0";
         this.iframeElement.allow = "camera; microphone";
-
+        this.iframeElement.src = this.iframeLocationUrl;
         document.body.appendChild(this.iframeElement);
       }
 
