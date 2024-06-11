@@ -267,37 +267,37 @@ namespace AvsHome {
 
             break;
 
-          // case AvsFactoryIframeSdk.V1.Config
-          //   .EVENT_ON_INITIAL_VERIFICATION_SUCCESS:
-          //   appendToLog(
-          //     'Verification already completed, delete the "isAgeVerified" cookie to retry'
-          //   );
+          case AvsFactoryIframeSdk.V1.Config
+            .EVENT_ON_INITIAL_VERIFICATION_SUCCESS:
+            appendToLog(
+              'Verification already completed, delete the "isAgeVerified" cookie to retry'
+            );
 
-          //   Ajax.validateVerificationPayload({
-          //     verificationPayload: eventMessage.data.payload,
-          //   }).then(
-          //     (data: IValidateVerificationPayloadResponse) => {
-          //       appendToLog(
-          //         "Cookie payload integrity check success, verification session id: " +
-          //           data.sessionId
-          //       );
-          //     },
-          //     (error: IErrorResponse) => {
-          //       triggerError(error);
-          //     }
-          //   );
+            Ajax.validateVerificationPayload({
+              verificationPayload: eventMessage.data.payload,
+            }).then(
+              (data: IValidateVerificationPayloadResponse) => {
+                appendToLog(
+                  "Cookie payload integrity check success, verification session id: " +
+                    data.sessionId
+                );
+              },
+              (error: IErrorResponse) => {
+                triggerError(error);
+              }
+            );
 
-          //   break;
+            break;
 
-          // case AvsFactoryIframeSdk.V1.Config
-          //   .EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
-          //   avsInstance.emit(
-          //     AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD
-          //   );
+          case AvsFactoryIframeSdk.V1.Config
+            .EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
+            avsInstance.emit(
+              AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD
+            );
 
-          //   appendToLog("Cookie was not found, verification is initializing");
+            appendToLog("Cookie was not found, verification is initializing");
 
-          //   break;
+            break;
 
           case AvsFactoryIframeSdk.V1.Config
             .EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR:
