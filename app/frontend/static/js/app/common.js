@@ -792,7 +792,8 @@ var AvsHome;
                     case AvsFactoryIframeSdk.V1.Config
                         .EVENT_ON_INITIAL_VERIFICATION_NOT_FOUND:
                         avsInstance.emit(AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD);
-                        appendToLog("Cookie was not found, verification is initializing");
+                        // appendToLog("Cookie was not found, verification is initializing");
+                        appendToLog("Verification is initializing");
                         break;
                     case AvsFactoryIframeSdk.V1.Config
                         .EVENT_ON_INITIAL_VERIFICATION_FATAL_ERROR:

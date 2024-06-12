@@ -295,7 +295,8 @@ namespace AvsHome {
               AvsFactoryIframeSdk.V1.Config.EVENT_RESOURCE_PRELOAD
             );
 
-            appendToLog("Cookie was not found, verification is initializing");
+            // appendToLog("Cookie was not found, verification is initializing");
+            appendToLog("Verification is initializing");
 
             break;
 
