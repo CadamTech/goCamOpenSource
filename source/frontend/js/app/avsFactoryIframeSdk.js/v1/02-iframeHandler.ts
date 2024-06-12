@@ -64,7 +64,7 @@ namespace AvsFactoryIframeSdk {
       public expand() {
         this.iframeElement.style.width = "100%";
         this.iframeElement.style.height = "100%";
-        this.iframeElement.style.opacity = "0.9";
+        this.iframeElement.style.opacity = "1";
         this.iframeElement.style.zIndex = "999";
       }
 

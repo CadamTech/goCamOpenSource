@@ -68,7 +68,7 @@ namespace AvsFactory {
 							}
 							
 							#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay {
-								// opacity: 0.7
+								opacity: 0.7
 							}
 							
 							#avsMainContainer .page .iconArea .iconItem .iconImage svg {

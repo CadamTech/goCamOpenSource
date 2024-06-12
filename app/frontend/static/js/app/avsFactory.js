@@ -2056,7 +2056,7 @@ var AvsFactory;
                         StartPage.Config.PARTNER_COLOR_CONFIG.body.background +
                         ";\n\t\t\t\t\t\t\t\tcolor: " +
                         StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground +
-                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay {\n\t\t\t\t\t\t\t\t// opacity: 0.7\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay {\n\t\t\t\t\t\t\t\topacity: 0.7\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " +
                         StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground +
                         ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " +
                         StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction +
