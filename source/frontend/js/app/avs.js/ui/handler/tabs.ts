@@ -26,10 +26,20 @@ namespace Avs {
               window.parent.location.search
             );
             const verificationType = queryParams.get("verificationType");
-            console.log(verificationType);
 
-            if (verificationType) {
-              const selectedTab = $(`.avsTab[data-type="${verificationType}"]`);
+            if (verificationType == "gocam-id") {
+              const selectedTab = $(`.avsTab[data-type="scanId"]`);
+              if (selectedTab.length) {
+                const currentTabSelected = selectedTab.index();
+                const currentTabData = <ITabsEventData>selectedTab.data();
+
+                if (!this.isDisabled(currentTabSelected)) {
+                  this.selectTab(currentTabSelected);
+                  this.tabWasSelected(currentTabSelected, currentTabData);
+                }
+              }
+            } else {
+              const selectedTab = $(`.avsTab[data-type="selfie"]`);
               if (selectedTab.length) {
                 const currentTabSelected = selectedTab.index();
                 const currentTabData = <ITabsEventData>selectedTab.data();
