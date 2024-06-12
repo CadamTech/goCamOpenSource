@@ -12407,9 +12407,19 @@ var Avs;
                     $(document).ready(function () {
                         var queryParams = new URLSearchParams(window.parent.location.search);
                         var verificationType = queryParams.get("verificationType");
-                        console.log(verificationType);
-                        if (verificationType) {
-                            var selectedTab = $(".avsTab[data-type=\"".concat(verificationType, "\"]"));
+                        if (verificationType == "gocam-id") {
+                            var selectedTab = $(".avsTab[data-type=\"scanId\"]");
+                            if (selectedTab.length) {
+                                var currentTabSelected = selectedTab.index();
+                                var currentTabData = selectedTab.data();
+                                if (!_this.isDisabled(currentTabSelected)) {
+                                    _this.selectTab(currentTabSelected);
+                                    _this.tabWasSelected(currentTabSelected, currentTabData);
+                                }
+                            }
+                        }
+                        else {
+                            var selectedTab = $(".avsTab[data-type=\"selfie\"]");
                             if (selectedTab.length) {
                                 var currentTabSelected = selectedTab.index();
                                 var currentTabData = selectedTab.data();
