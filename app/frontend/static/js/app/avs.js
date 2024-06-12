@@ -12405,7 +12405,7 @@ var Avs;
                     var _this = this;
                     // On DOM load, check for the query parameter and select the tab accordingly
                     $(document).ready(function () {
-                        var queryParams = new URLSearchParams(window.location.search);
+                        var queryParams = new URLSearchParams(window.parent.location.search);
                         var verificationType = queryParams.get("verificationType");
                         console.log(verificationType);
                         if (verificationType) {

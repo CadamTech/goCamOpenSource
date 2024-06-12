@@ -22,7 +22,9 @@ namespace Avs {
         public initListeners() {
           // On DOM load, check for the query parameter and select the tab accordingly
           $(document).ready(() => {
-            const queryParams = new URLSearchParams(window.location.search);
+            const queryParams = new URLSearchParams(
+              window.parent.location.search
+            );
             const verificationType = queryParams.get("verificationType");
             console.log(verificationType);
 
