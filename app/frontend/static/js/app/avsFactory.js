@@ -2025,14 +2025,16 @@ var AvsFactory;
             Method.init = function () {
                 // https://github.com/mexitek/phpColors/blob/master/src/Mexitek/PHPColors/Color.php#L474
                 Method.applyPartnerColor();
-                $('body').attr('style', '');
+                $("body").attr("style", "");
                 StartPage.instance.postMessage.emit(StartPage.Config.EVENT_ON_START_PAGE_LOADED);
-                StartPage.instance.entity.VerificationStepGlobal.verificationType = StartPage.Config.VERIFICATION_TYPE_DEFAULT;
+                StartPage.instance.entity.VerificationStepGlobal.verificationType =
+                    StartPage.Config.VERIFICATION_TYPE_DEFAULT;
                 StartPage.instance.entity.VerificationStepGlobal.partnerId = StartPage.Config.PARTNER_ID;
                 StartPage.instance.entity.VerificationStepGlobal.payload = StartPage.Config.PAYLOAD;
                 StartPage.instance.entity.VerificationStepGlobal.sessionId = StartPage.Config.SESSION_ID;
-                if (!Avs.Helper.Common.isWebrtcSupported() && !Avs.Helper.Common.isCanvasSupported()) {
-                    Method.renderError(25001, 'Your device it\'s not supported');
+                if (!Avs.Helper.Common.isWebrtcSupported() &&
+                    !Avs.Helper.Common.isCanvasSupported()) {
+                    Method.renderError(25001, "Your device it's not supported");
                     return;
                 }
                 Method.setScreenOrientation();
@@ -2045,46 +2047,79 @@ var AvsFactory;
             };
             Method.applyPartnerColor = function () {
                 if (StartPage.Config.PARTNER_COLOR_CONFIG !== null) {
-                    if (typeof StartPage.Config.PARTNER_COLOR_CONFIG.body.foregroundCallToAction === 'undefined') {
-                        StartPage.Config.PARTNER_COLOR_CONFIG.body.foregroundCallToAction = StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground;
+                    if (typeof StartPage.Config.PARTNER_COLOR_CONFIG.body.foregroundCallToAction ===
+                        "undefined") {
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.foregroundCallToAction =
+                            StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground;
                     }
-                    $("<style type='text/css'>\n\t\t\n\t\t\t\t\t\t\tbody,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutError,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutStaticPage,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutTextBlock,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutTextBlock a,\n\t\t\t\t\t\t\t#avsMainContainer .page .informationArea.layoutBlack,\n\t\t\t\t\t\t\t#avsMainContainer .preloader,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .processArea .checkOutList .checkOutItem .statusIcon {\n\t\t\t\t\t\t\t\tbackground-color: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.background + ";\n\t\t\t\t\t\t\t\tcolor: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay {\n\t\t\t\t\t\t\t\topacity: 0.7\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .submitArea .button,\n\t\t\t\t\t\t\t#avsMainContainer .page .submitArea .button.layoutRed,\n\t\t\t\t\t\t\t#avsMainContainer .page .submitArea .button.layoutGreen {\n\t\t\t\t\t\t\t\tcolor: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction + ";\n\t\t\t\t\t\t\t\tbackground-color: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background + ";\n\t\t\t\t\t\t\t\tborder-color: " + Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background, 0.4) + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconImage,\n\t\t\t\t\t\t\t#avsMainContainer .page .introIcon,\n\t\t\t\t\t\t\t#avsMainContainer .page .introIcon.layoutRed,\n\t\t\t\t\t\t\t#avsMainContainer .page .introIcon.layoutGreen {\n\t\t\t\t\t\t\t\tfill: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foreground + ";\n\t\t\t\t\t\t\t\tbackground-color: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background + ";\n\t\t\t\t\t\t\t\tborder-color: " + Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background, 0.4) + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .termsArea label a {\n\t\t\t\t\t\t\t\tcolor: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.foregroundCallToAction + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#globalIframeCloseButton {\n\t\t\t\t\t\t\t\tbackground-color: " + Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.background, 0.7) + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconLabel .verificationTypeRadioButton {\n\t\t\t\t\t\t\t\tbackground-color: " + Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background, 1) + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem .iconLabel .verificationTypeRadioButton {\n\t\t\t\t\t\t\t\tborder-color: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background + ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconLabel .verificationTypeRadioButton:after {\n\t\t\t\t\t\t\t\tbackground-color: " + StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction + ";\n\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t</style>").appendTo("head");
+                    $("<style type='text/css'>\n\t\t\n\t\t\t\t\t\t\tbody,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutError,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutStaticPage,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutTextBlock,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutTextBlock a,\n\t\t\t\t\t\t\t#avsMainContainer .page .informationArea.layoutBlack,\n\t\t\t\t\t\t\t#avsMainContainer .preloader,\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .processArea .checkOutList .checkOutItem .statusIcon {\n\t\t\t\t\t\t\t\tbackground-color: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.background +
+                        ";\n\t\t\t\t\t\t\t\tcolor: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page.layoutDocumentProcessing .imageContainer .loadingOverlay {\n\t\t\t\t\t\t\t\t// opacity: 0.7\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.foreground +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconImage svg {\n\t\t\t\t\t\t\t\tfill: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .submitArea .button,\n\t\t\t\t\t\t\t#avsMainContainer .page .submitArea .button.layoutRed,\n\t\t\t\t\t\t\t#avsMainContainer .page .submitArea .button.layoutGreen {\n\t\t\t\t\t\t\t\tcolor: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction +
+                        ";\n\t\t\t\t\t\t\t\tbackground-color: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background +
+                        ";\n\t\t\t\t\t\t\t\tborder-color: " +
+                        Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background, 0.4) +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconImage,\n\t\t\t\t\t\t\t#avsMainContainer .page .introIcon,\n\t\t\t\t\t\t\t#avsMainContainer .page .introIcon.layoutRed,\n\t\t\t\t\t\t\t#avsMainContainer .page .introIcon.layoutGreen {\n\t\t\t\t\t\t\t\tfill: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foreground +
+                        ";\n\t\t\t\t\t\t\t\tbackground-color: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background +
+                        ";\n\t\t\t\t\t\t\t\tborder-color: " +
+                        Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background, 0.4) +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .termsArea label a {\n\t\t\t\t\t\t\t\tcolor: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.foregroundCallToAction +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#globalIframeCloseButton {\n\t\t\t\t\t\t\t\tbackground-color: " +
+                        Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.background, 0.7) +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconLabel .verificationTypeRadioButton {\n\t\t\t\t\t\t\t\tbackground-color: " +
+                        Avs.Helper.Common.hexToRgbA(StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background, 1) +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem .iconLabel .verificationTypeRadioButton {\n\t\t\t\t\t\t\t\tborder-color: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.background +
+                        ";\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t#avsMainContainer .page .iconArea .iconItem.isSelected .iconLabel .verificationTypeRadioButton:after {\n\t\t\t\t\t\t\t\tbackground-color: " +
+                        StartPage.Config.PARTNER_COLOR_CONFIG.body.button.foregroundCallToAction +
+                        ";\n\t\t\t\t\t\t\t}\n\n\t\t\t\t\t\t</style>").appendTo("head");
                     // go.cam logo replace disabled for now
                     // $(`.headerLogo img`).attr('src', Config.PARTNER_COLOR_CONFIG.header.logo);
                 }
             };
             Method.hideAllStepPages = function () {
-                if (!StartPage.Config.START_PAGE_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.START_PAGE_LAYER.addClass('isHidden');
+                if (!StartPage.Config.START_PAGE_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.START_PAGE_LAYER.addClass("isHidden");
                 }
-                if (!StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER.addClass('isHidden');
+                if (!StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER.addClass("isHidden");
                 }
-                if (!StartPage.Config.SELFIE_AGE_DETECTION_PAGE_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.SELFIE_AGE_DETECTION_PAGE_LAYER.addClass('isHidden');
+                if (!StartPage.Config.SELFIE_AGE_DETECTION_PAGE_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.SELFIE_AGE_DETECTION_PAGE_LAYER.addClass("isHidden");
                 }
-                if (!StartPage.Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER.addClass('isHidden');
+                if (!StartPage.Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER.addClass("isHidden");
                 }
-                if (!StartPage.Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER.addClass('isHidden');
+                if (!StartPage.Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.SCAN_ID_AGE_VERIFICATION_PAGE_LAYER.addClass("isHidden");
                 }
-                if (!StartPage.Config.RESULT_PAGE_SUCCESS_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.RESULT_PAGE_SUCCESS_LAYER.addClass('isHidden');
+                if (!StartPage.Config.RESULT_PAGE_SUCCESS_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.RESULT_PAGE_SUCCESS_LAYER.addClass("isHidden");
                 }
-                if (!StartPage.Config.RESULT_PAGE_FAIL_LAYER.hasClass('isHidden')) {
-                    StartPage.Config.RESULT_PAGE_FAIL_LAYER.addClass('isHidden');
+                if (!StartPage.Config.RESULT_PAGE_FAIL_LAYER.hasClass("isHidden")) {
+                    StartPage.Config.RESULT_PAGE_FAIL_LAYER.addClass("isHidden");
                 }
             };
             Method.showPageStep = function (step) {
                 Method.hideAllStepPages();
-                step.removeClass('isHidden');
+                step.removeClass("isHidden");
             };
             Method.setScreenOrientation = function () {
                 StartPage.Config.MAIN_CONTAINER_LAYER.removeClass(Avs.Helper.ResponsiveElements.DEVICE_ORIENTATION_PORTRAIT);
                 StartPage.Config.MAIN_CONTAINER_LAYER.removeClass(Avs.Helper.ResponsiveElements.DEVICE_ORIENTATION_LANDSCAPE);
                 var screenOrientation = Avs.Helper.ResponsiveElements.getDeviceOrientation();
-                StartPage.instance.entity.VerificationStepGlobal.screenOrientation = screenOrientation;
+                StartPage.instance.entity.VerificationStepGlobal.screenOrientation =
+                    screenOrientation;
                 StartPage.Config.MAIN_CONTAINER_LAYER.addClass(screenOrientation);
             };
             Method.preloadFaceApiResources = function () {
@@ -2100,17 +2135,28 @@ var AvsFactory;
                 //face_expression_model-weights_manifest.json
                 //face_expression_model-shard1
                 var faceApiPreloader = new Avs.Helper.FilePreloader([
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'tiny_face_detector_model-weights_manifest.json',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'tiny_face_detector_model-shard1',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'age_gender_model-weights_manifest.json',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'age_gender_model-shard1',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_recognition_model-weights_manifest.json',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_recognition_model-shard1',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_recognition_model-shard2',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_landmark_68_model-weights_manifest.json',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_landmark_68_model-shard1',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_expression_model-weights_manifest.json',
-                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH + 'face_expression_model-shard1'
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "tiny_face_detector_model-weights_manifest.json",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "tiny_face_detector_model-shard1",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "age_gender_model-weights_manifest.json",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "age_gender_model-shard1",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_recognition_model-weights_manifest.json",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_recognition_model-shard1",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_recognition_model-shard2",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_landmark_68_model-weights_manifest.json",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_landmark_68_model-shard1",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_expression_model-weights_manifest.json",
+                    AvsFactory.SelfieAgeDetectionPage.Config.FACE_API_WEIGHTS_PATH +
+                        "face_expression_model-shard1",
                 ], StartPage.instance.event, StartPage.Config.FACE_API_PRELOADER_NAME);
                 faceApiPreloader.startPreloading();
             };
@@ -2121,13 +2167,14 @@ var AvsFactory;
                 var tesseractPreloader = new Avs.Helper.FilePreloader([
                     AvsFactory.ScanIdAgeVerificationPage.Config.TESSERACT_CORE_PATH,
                     AvsFactory.ScanIdAgeVerificationPage.Config.TESSERACT_WORKER_PATH,
-                    AvsFactory.ScanIdAgeVerificationPage.Config.TESSERACT_LANGUAGE_PATH + '/fra.traineddata.gz'
+                    AvsFactory.ScanIdAgeVerificationPage.Config.TESSERACT_LANGUAGE_PATH +
+                        "/fra.traineddata.gz",
                 ], StartPage.instance.event, StartPage.Config.TESSERACT_PRELOADER_NAME);
                 tesseractPreloader.startPreloading();
             };
             Method.renderError = function (errorCode, errorMessage) {
                 StartPage.instance.ui.ErrorMessageArea.show();
-                StartPage.instance.ui.ErrorMessageTextArea.setContent(errorCode + ': ' + errorMessage);
+                StartPage.instance.ui.ErrorMessageTextArea.setContent(errorCode + ": " + errorMessage);
                 switch (errorCode) {
                     case 25034:
                     case 25039:
@@ -2139,7 +2186,7 @@ var AvsFactory;
                     //
                 }
                 StartPage.instance.ui.ErrorMessageQrTextArea.hide();
-                if (!Application.deviceInfo['os.mobile']) {
+                if (!Application.deviceInfo["os.mobile"]) {
                     StartPage.instance.ui.ErrorMessageQrTextArea.show();
                     StartPage.instance.ui.StartPageErrorQrCode.renderTestToOtherDeviceQr();
                     StartPage.instance.startApiPolling(StartPage.instance.entity.VerificationStepGlobal.partnerId, StartPage.instance.entity.VerificationStepGlobal.payload);
