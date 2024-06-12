@@ -656,5 +656,22 @@
 <script type="text/javascript" crossorigin="anonymous" src="/static/js/app/avs.js?{{ cacheBuster }}"></script>
 <script type="text/javascript" crossorigin="anonymous" src="/static/js/app/avsFactory.js?{{ cacheBuster }}"></script>
 <script type="text/javascript" crossorigin="anonymous" src="/static/js/app/common.js?{{ cacheBuster }}"></script>
+    <script>
+      // Function to get query parameters from the URL
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        const verificationType = params.get('verificationType');
+        return { verificationType };
+      }
+
+      // Assuming Avs.Ui.Library.VerificationTypeTabs is globally accessible
+      const verificationTabs = new Avs.Ui.Library.VerificationTypeTabs(new Avs.Event.Listener());
+      const { verificationType } = getQueryParams();
+      const tabNumber = verificationTabs.verificationTypeToTabNumber(verificationType);
+
+      if (tabNumber !== null) {
+        verificationTabs.tabWasSelected(tabNumber, {});
+      }
+    </script>
 
 {% endblock %}
