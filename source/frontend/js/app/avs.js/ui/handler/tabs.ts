@@ -1,141 +1,160 @@
 namespace Avs {
+  export namespace Ui {
+    export namespace Handler {
+      export interface ITabsEventData {
+        tabNumber: number;
+        tabData: {
+          type: string;
+        };
+      }
 
-	export namespace Ui {
+      export class Tabs extends Common {
+        public element: JQuery;
+        public states: any;
+        public event: Avs.Event.Listener;
 
-		export namespace Handler {
+        constructor(event: Avs.Event.Listener) {
+          super(event);
 
-			export interface ITabsEventData {
-				tabNumber: number,
-				tabData: {
-					type: string
-				}
-			}
+          this.event = event;
+        }
 
-			export class Tabs extends Common {
+        public initListeners() {
+          // On DOM load, check for the query parameter and select the tab accordingly
+          $(document).ready(() => {
+            const queryParams = new URLSearchParams(window.location.search);
+            const verificationType = queryParams.get("verificationType");
+            console.log(verificationType);
 
-				public element: JQuery;
-				public states: any;
-				public event: Avs.Event.Listener;
+            if (verificationType) {
+              const selectedTab = $(`.avsTab[data-type="${verificationType}"]`);
+              if (selectedTab.length) {
+                const currentTabSelected = selectedTab.index();
+                const currentTabData = <ITabsEventData>selectedTab.data();
 
-				constructor(event: Avs.Event.Listener) {
+                if (!this.isDisabled(currentTabSelected)) {
+                  this.selectTab(currentTabSelected);
+                  this.tabWasSelected(currentTabSelected, currentTabData);
+                }
+              }
+            }
+          });
 
-					super(event);
+          // Keep the click event listener for manual tab selection
+          this.element.on("click", ".avsTab", (e: Event) => {
+            let event = $(e.currentTarget);
+            let currentTabSelected = event.index();
+            let currentTabData = <ITabsEventData>event.data();
 
-					this.event = event;
-				}
+            if (this.isDisabled(currentTabSelected)) {
+              return;
+            }
 
-				public initListeners() {
+            this.selectTab(currentTabSelected);
+            this.tabWasSelected(currentTabSelected, currentTabData);
+          });
+        }
 
-					this.element.on('click', '.avsTab', (e: Event) => {
+        public toggleVisibility() {
+          if (this.states.visible) {
+            return this.hide();
+          }
 
-						let event              = $(e.currentTarget);
-						let currentTabSelected = event.index();
-						let currentTabData     = <ITabsEventData>event.data();
+          return this.show();
+        }
 
-						if (this.isDisabled(currentTabSelected)) {
-							return;
-						}
+        public isDisabled(tabNumber: number) {
+          return this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .hasClass("isDisabled");
+        }
 
-						this.selectTab(currentTabSelected);
-						this.tabWasSelected(currentTabSelected, currentTabData);
+        public disableTab(tabNumber: number) {
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .addClass("isDisabled");
+        }
 
-					});
+        public enableTab(tabNumber: number) {
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .removeClass("isDisabled");
+        }
 
-				}
+        public enableAllTabs() {
+          this.element.find(".avsTab").removeClass("isDisabled");
+        }
 
-				public toggleVisibility() {
+        public isHidden(tabNumber: number) {
+          return this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .hasClass("isHidden");
+        }
 
-					if (this.states.visible) {
-						return this.hide();
-					}
+        public hideTab(tabNumber: number) {
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .addClass("isHidden");
+        }
 
-					return this.show();
+        public showTab(tabNumber: number) {
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .removeClass("isHidden");
+        }
 
-				}
+        public showAllTabs() {
+          this.element.find(".avsTab").removeClass("isHidden");
+        }
 
-				public isDisabled(tabNumber: number) {
-					return this.element.find('.avsTab:eq(' + tabNumber + ')').hasClass('isDisabled');
-				}
+        public isSelected(tabNumber: number) {
+          return this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .hasClass("isSelected");
+        }
 
-				public disableTab(tabNumber: number) {
-					this.element.find('.avsTab:eq(' + tabNumber + ')').addClass('isDisabled');
-				}
+        public selectTab(tabNumber: number) {
+          this.deselectAllTabs();
+          this.unHighlightTab(tabNumber);
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .addClass("isSelected");
 
-				public enableTab(tabNumber: number) {
-					this.element.find('.avsTab:eq(' + tabNumber + ')').removeClass('isDisabled');
-				}
+          this.element.parent().find(".avsTabContent").addClass("isHidden");
+          this.element
+            .parent()
+            .find(".avsTabContent:eq(" + tabNumber + ")")
+            .removeClass("isHidden");
+        }
 
-				public enableAllTabs() {
-					this.element.find('.avsTab').removeClass('isDisabled');
-				}
+        public deselectAllTabs() {
+          this.element.find(".avsTab").removeClass("isSelected");
+        }
 
-				public isHidden(tabNumber: number) {
-					return this.element.find('.avsTab:eq(' + tabNumber + ')').hasClass('isHidden');
-				}
+        public selectAllTabs() {
+          this.element.find(".avsTab").addClass("isSelected");
+        }
 
-				public hideTab(tabNumber: number) {
-					this.element.find('.avsTab:eq(' + tabNumber + ')').addClass('isHidden');
-				}
+        public disableAllTabs() {
+          this.element.find(".avsTab").addClass("isDisabled");
+        }
 
-				public showTab(tabNumber: number) {
-					this.element.find('.avsTab:eq(' + tabNumber + ')').removeClass('isHidden');
-				}
+        public highlightTab(tabNumber: number) {
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .removeClass("isHighlighted")
+            .addClass("isHighlighted");
+        }
 
-				public showAllTabs() {
-					this.element.find('.avsTab').removeClass('isHidden');
-				}
+        public unHighlightTab(tabNumber: number) {
+          this.element
+            .find(".avsTab:eq(" + tabNumber + ")")
+            .removeClass("isHighlighted");
+        }
 
-				public isSelected(tabNumber: number) {
-					return this.element.find('.avsTab:eq(' + tabNumber + ')').hasClass('isSelected');
-				}
-
-				public selectTab(tabNumber: number) {
-
-					this.deselectAllTabs();
-					this.unHighlightTab(tabNumber);
-					this.element.find('.avsTab:eq(' + tabNumber + ')')
-						.addClass('isSelected');
-
-					this.element.parent().find('.avsTabContent').addClass('isHidden');
-					this.element.parent().find('.avsTabContent:eq(' + tabNumber + ')').removeClass('isHidden');
-
-				}
-
-				public deselectAllTabs() {
-					this.element.find('.avsTab').removeClass('isSelected');
-				}
-
-				public selectAllTabs() {
-					this.element.find('.avsTab').addClass('isSelected');
-				}
-
-				public disableAllTabs() {
-					this.element.find('.avsTab').addClass('isDisabled');
-				}
-
-				public highlightTab(tabNumber: number) {
-
-					this.element.find('.avsTab:eq(' + tabNumber + ')')
-					    .removeClass('isHighlighted')
-					    .addClass('isHighlighted');
-
-				}
-
-				public unHighlightTab(tabNumber: number) {
-
-					this.element.find('.avsTab:eq(' + tabNumber + ')')
-					    .removeClass('isHighlighted');
-
-				}
-
-				// dummy function to be overwritten by child class
-				public tabWasSelected(tabNumber: number, tabData: ITabsEventData) {
-				}
-
-			}
-
-		}
-
-	}
-
+        // dummy function to be overwritten by child class
+        public tabWasSelected(tabNumber: number, tabData: ITabsEventData) {}
+      }
+    }
+  }
 }

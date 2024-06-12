@@ -17,7 +17,7 @@ namespace AvsFactory {
 				instance.entity.VerificationStepGlobal.partnerId                      = Config.PARTNER_ID;
 				instance.entity.VerificationStepGlobal.payload                        = Config.PAYLOAD;
 				instance.entity.VerificationStepGlobal.sessionId                      = Config.SESSION_ID;
-
+				
 				if (!Avs.Helper.Common.isWebrtcSupported() && !Avs.Helper.Common.isCanvasSupported()) {
 					Method.renderError(25001, 'Your device it\'s not supported');
 					return;

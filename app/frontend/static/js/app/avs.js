@@ -12403,7 +12403,25 @@ var Avs;
                 }
                 Tabs.prototype.initListeners = function () {
                     var _this = this;
-                    this.element.on('click', '.avsTab', function (e) {
+                    // On DOM load, check for the query parameter and select the tab accordingly
+                    $(document).ready(function () {
+                        var queryParams = new URLSearchParams(window.location.search);
+                        var verificationType = queryParams.get("verificationType");
+                        console.log(verificationType);
+                        if (verificationType) {
+                            var selectedTab = $(".avsTab[data-type=\"".concat(verificationType, "\"]"));
+                            if (selectedTab.length) {
+                                var currentTabSelected = selectedTab.index();
+                                var currentTabData = selectedTab.data();
+                                if (!_this.isDisabled(currentTabSelected)) {
+                                    _this.selectTab(currentTabSelected);
+                                    _this.tabWasSelected(currentTabSelected, currentTabData);
+                                }
+                            }
+                        }
+                    });
+                    // Keep the click event listener for manual tab selection
+                    this.element.on("click", ".avsTab", function (e) {
                         var event = $(e.currentTarget);
                         var currentTabSelected = event.index();
                         var currentTabData = event.data();
@@ -12421,61 +12439,80 @@ var Avs;
                     return this.show();
                 };
                 Tabs.prototype.isDisabled = function (tabNumber) {
-                    return this.element.find('.avsTab:eq(' + tabNumber + ')').hasClass('isDisabled');
+                    return this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .hasClass("isDisabled");
                 };
                 Tabs.prototype.disableTab = function (tabNumber) {
-                    this.element.find('.avsTab:eq(' + tabNumber + ')').addClass('isDisabled');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .addClass("isDisabled");
                 };
                 Tabs.prototype.enableTab = function (tabNumber) {
-                    this.element.find('.avsTab:eq(' + tabNumber + ')').removeClass('isDisabled');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .removeClass("isDisabled");
                 };
                 Tabs.prototype.enableAllTabs = function () {
-                    this.element.find('.avsTab').removeClass('isDisabled');
+                    this.element.find(".avsTab").removeClass("isDisabled");
                 };
                 Tabs.prototype.isHidden = function (tabNumber) {
-                    return this.element.find('.avsTab:eq(' + tabNumber + ')').hasClass('isHidden');
+                    return this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .hasClass("isHidden");
                 };
                 Tabs.prototype.hideTab = function (tabNumber) {
-                    this.element.find('.avsTab:eq(' + tabNumber + ')').addClass('isHidden');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .addClass("isHidden");
                 };
                 Tabs.prototype.showTab = function (tabNumber) {
-                    this.element.find('.avsTab:eq(' + tabNumber + ')').removeClass('isHidden');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .removeClass("isHidden");
                 };
                 Tabs.prototype.showAllTabs = function () {
-                    this.element.find('.avsTab').removeClass('isHidden');
+                    this.element.find(".avsTab").removeClass("isHidden");
                 };
                 Tabs.prototype.isSelected = function (tabNumber) {
-                    return this.element.find('.avsTab:eq(' + tabNumber + ')').hasClass('isSelected');
+                    return this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .hasClass("isSelected");
                 };
                 Tabs.prototype.selectTab = function (tabNumber) {
                     this.deselectAllTabs();
                     this.unHighlightTab(tabNumber);
-                    this.element.find('.avsTab:eq(' + tabNumber + ')')
-                        .addClass('isSelected');
-                    this.element.parent().find('.avsTabContent').addClass('isHidden');
-                    this.element.parent().find('.avsTabContent:eq(' + tabNumber + ')').removeClass('isHidden');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .addClass("isSelected");
+                    this.element.parent().find(".avsTabContent").addClass("isHidden");
+                    this.element
+                        .parent()
+                        .find(".avsTabContent:eq(" + tabNumber + ")")
+                        .removeClass("isHidden");
                 };
                 Tabs.prototype.deselectAllTabs = function () {
-                    this.element.find('.avsTab').removeClass('isSelected');
+                    this.element.find(".avsTab").removeClass("isSelected");
                 };
                 Tabs.prototype.selectAllTabs = function () {
-                    this.element.find('.avsTab').addClass('isSelected');
+                    this.element.find(".avsTab").addClass("isSelected");
                 };
                 Tabs.prototype.disableAllTabs = function () {
-                    this.element.find('.avsTab').addClass('isDisabled');
+                    this.element.find(".avsTab").addClass("isDisabled");
                 };
                 Tabs.prototype.highlightTab = function (tabNumber) {
-                    this.element.find('.avsTab:eq(' + tabNumber + ')')
-                        .removeClass('isHighlighted')
-                        .addClass('isHighlighted');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .removeClass("isHighlighted")
+                        .addClass("isHighlighted");
                 };
                 Tabs.prototype.unHighlightTab = function (tabNumber) {
-                    this.element.find('.avsTab:eq(' + tabNumber + ')')
-                        .removeClass('isHighlighted');
+                    this.element
+                        .find(".avsTab:eq(" + tabNumber + ")")
+                        .removeClass("isHighlighted");
                 };
                 // dummy function to be overwritten by child class
-                Tabs.prototype.tabWasSelected = function (tabNumber, tabData) {
-                };
+                Tabs.prototype.tabWasSelected = function (tabNumber, tabData) { };
                 return Tabs;
             }(Handler.Common));
             Handler.Tabs = Tabs;
