@@ -661,7 +661,7 @@ var AvsHome;
         function init() {
             createUi();
             createBindings();
-            exampleImplementationStartJsButton.click();
+            exampleImplementationStartJsButton.trigger("click");
         }
         Action.init = init;
         function createUi() {
@@ -806,7 +806,7 @@ var AvsHome;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_RESOURCES_LOADED:
                         appendToLog("Resources loaded, verification is ready!");
                         exampleImplementationIframeJsButton.removeAttr("disabled");
-                        exampleImplementationIframeJsButton.click();
+                        exampleImplementationIframeJsButton.trigger("click");
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_CLOSE_IFRAME:
                         avsInstance.iframeInstance.collapse();

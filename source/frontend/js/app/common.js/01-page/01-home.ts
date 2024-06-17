@@ -111,7 +111,7 @@ namespace AvsHome {
     export function init() {
       createUi();
       createBindings();
-      exampleImplementationStartJsButton.click();
+      exampleImplementationStartJsButton.trigger("click");
     }
 
     function createUi() {
@@ -317,7 +317,7 @@ namespace AvsHome {
           case AvsFactoryIframeSdk.V1.Config.EVENT_ON_RESOURCES_LOADED:
             appendToLog("Resources loaded, verification is ready!");
             exampleImplementationIframeJsButton.removeAttr("disabled");
-            exampleImplementationIframeJsButton.click();
+            exampleImplementationIframeJsButton.trigger("click");
             break;
 
           case AvsFactoryIframeSdk.V1.Config.EVENT_ON_CLOSE_IFRAME:

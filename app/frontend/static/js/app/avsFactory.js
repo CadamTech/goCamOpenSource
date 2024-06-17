@@ -2224,9 +2224,11 @@ var AvsFactory;
             }
             Event.init = function () {
                 StartPage.instance.event.on(Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED, function (event, data) {
-                    console.log("event init", data);
+                    console.log("on tab selected", StartPage.instance.entity.VerificationStepGlobal.verificationType);
+                    console.log("parameters", data.tabNumber);
                     StartPage.instance.entity.VerificationStepGlobal.verificationType =
                         StartPage.instance.ui.VerificationTypeTabs.tabNumberToVerificationType(data.tabNumber);
+                    console.log("after", StartPage.instance.entity.VerificationStepGlobal.verificationType);
                 });
                 StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT +
                     "." +
@@ -2312,7 +2314,7 @@ var AvsFactory;
             StartPage.Binding.init();
             StartPage.Method.init();
             var startButton = $("#startButton");
-            startButton.click();
+            startButton.trigger("click");
         }
         StartPage.init = init;
     })(StartPage = AvsFactory.StartPage || (AvsFactory.StartPage = {}));
