@@ -22,11 +22,11 @@ namespace AvsFactory {
           console.log("currently selected veritication :: ");
           console.log(instance.entity.VerificationStepGlobal.verificationType);
           setTimeout(() => {
-            console.log("currently selected veritication after 1 seconds:: ");
+            console.log("currently selected veritication after 20: ");
             console.log(
               instance.entity.VerificationStepGlobal.verificationType
             );
-          }, 1000);
+          }, 20);
 
           switch (instance.entity.VerificationStepGlobal.verificationType) {
             case Avs.Entity.VerificationStepGlobal

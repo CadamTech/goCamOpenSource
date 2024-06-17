@@ -1959,9 +1959,9 @@ var AvsFactory;
                     console.log("currently selected veritication :: ");
                     console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
                     setTimeout(function () {
-                        console.log("currently selected veritication after 1 seconds:: ");
+                        console.log("currently selected veritication after 20: ");
                         console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
-                    }, 1000);
+                    }, 20);
                     switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
                         case Avs.Entity.VerificationStepGlobal
                             .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
