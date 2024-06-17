@@ -21,31 +21,31 @@ namespace AvsFactory {
 
           console.log("currently selected veritication :: ");
           console.log(instance.entity.VerificationStepGlobal.verificationType);
+
           setTimeout(() => {
-            console.log("currently selected veritication after 20: ");
+            console.log("currently selected verification after 20ms: ");
             console.log(
               instance.entity.VerificationStepGlobal.verificationType
             );
+
+            switch (instance.entity.VerificationStepGlobal.verificationType) {
+              case Avs.Entity.VerificationStepGlobal
+                .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
+                SelfieAgeDetectionIntro.init();
+                Method.showPageStep(Config.SELFIE_AGE_DETECTION_INTRO_LAYER);
+                break;
+
+              case Avs.Entity.VerificationStepGlobal.VERIFICATION_TYPE_SCAN_ID:
+                ScanIdAgeVerificationIntro.init();
+                Method.showPageStep(
+                  Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER
+                );
+                break;
+
+              default:
+              // Handle other cases
+            }
           }, 20);
-
-          switch (instance.entity.VerificationStepGlobal.verificationType) {
-            case Avs.Entity.VerificationStepGlobal
-              .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
-              SelfieAgeDetectionIntro.init();
-              Method.showPageStep(Config.SELFIE_AGE_DETECTION_INTRO_LAYER);
-
-              break;
-
-            case Avs.Entity.VerificationStepGlobal.VERIFICATION_TYPE_SCAN_ID:
-              ScanIdAgeVerificationIntro.init();
-              Method.showPageStep(Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER);
-
-              break;
-
-            default:
-
-            //
-          }
         });
 
         instance.ui.TermsAndConditionsCheckbox.onChange(() => {

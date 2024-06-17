@@ -1959,22 +1959,22 @@ var AvsFactory;
                     console.log("currently selected veritication :: ");
                     console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
                     setTimeout(function () {
-                        console.log("currently selected veritication after 20: ");
+                        console.log("currently selected verification after 20ms: ");
                         console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
+                        switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
+                            case Avs.Entity.VerificationStepGlobal
+                                .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
+                                AvsFactory.SelfieAgeDetectionIntro.init();
+                                StartPage.Method.showPageStep(StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER);
+                                break;
+                            case Avs.Entity.VerificationStepGlobal.VERIFICATION_TYPE_SCAN_ID:
+                                AvsFactory.ScanIdAgeVerificationIntro.init();
+                                StartPage.Method.showPageStep(StartPage.Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER);
+                                break;
+                            default:
+                            // Handle other cases
+                        }
                     }, 20);
-                    switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
-                        case Avs.Entity.VerificationStepGlobal
-                            .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
-                            AvsFactory.SelfieAgeDetectionIntro.init();
-                            StartPage.Method.showPageStep(StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER);
-                            break;
-                        case Avs.Entity.VerificationStepGlobal.VERIFICATION_TYPE_SCAN_ID:
-                            AvsFactory.ScanIdAgeVerificationIntro.init();
-                            StartPage.Method.showPageStep(StartPage.Config.SCAN_ID_AGE_VERIFICATION_INTRO_LAYER);
-                            break;
-                        default:
-                        //
-                    }
                 });
                 StartPage.instance.ui.TermsAndConditionsCheckbox.onChange(function () {
                     StartPage.instance.entity.VerificationStepGlobal.termsAndConditionAgreement =
