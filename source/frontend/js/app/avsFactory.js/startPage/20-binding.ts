@@ -17,6 +17,8 @@ namespace AvsFactory {
           instance.entity.VerificationStepGlobal.tesseractType =
             Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
 
+          console.log(instance.entity.VerificationStepGlobal.verificationType);
+
           switch (instance.entity.VerificationStepGlobal.verificationType) {
             case Avs.Entity.VerificationStepGlobal
               .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
