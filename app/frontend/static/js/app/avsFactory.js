@@ -1946,9 +1946,11 @@ var AvsFactory;
                     StartPage.Method.setScreenOrientation();
                 });
                 StartPage.instance.ui.StartButton.onClick(function () {
-                    // if (!instance.entity.VerificationStepGlobal.termsAndConditionAgreement) {
-                    // 	alert('Please agree with the terms and conditions first');
-                    // 	return;
+                    // if (
+                    //   !instance.entity.VerificationStepGlobal.termsAndConditionAgreement
+                    // ) {
+                    //   alert("Please agree with the terms and conditions first");
+                    //   return;
                     // }
                     StartPage.instance.entity.VerificationStepGlobal.faceApiType =
                         Avs.Entity.VerificationStepGlobal.FACE_API_TYPE_FAST;
@@ -2222,6 +2224,7 @@ var AvsFactory;
             }
             Event.init = function () {
                 StartPage.instance.event.on(Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED, function (event, data) {
+                    console.log("event init", data);
                     StartPage.instance.entity.VerificationStepGlobal.verificationType =
                         StartPage.instance.ui.VerificationTypeTabs.tabNumberToVerificationType(data.tabNumber);
                 });

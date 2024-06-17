@@ -7,12 +7,12 @@ namespace AvsFactory {
         });
 
         instance.ui.StartButton.onClick(() => {
-          if (
-            !instance.entity.VerificationStepGlobal.termsAndConditionAgreement
-          ) {
-            alert("Please agree with the terms and conditions first");
-            return;
-          }
+          // if (
+          //   !instance.entity.VerificationStepGlobal.termsAndConditionAgreement
+          // ) {
+          //   alert("Please agree with the terms and conditions first");
+          //   return;
+          // }
 
           instance.entity.VerificationStepGlobal.faceApiType =
             Avs.Entity.VerificationStepGlobal.FACE_API_TYPE_FAST;

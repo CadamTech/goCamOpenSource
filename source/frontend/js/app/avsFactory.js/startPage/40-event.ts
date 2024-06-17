@@ -5,6 +5,7 @@ namespace AvsFactory {
         instance.event.on(
           Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED,
           (event: Avs.Event.Listener, data: Avs.Ui.Handler.ITabsEventData) => {
+            console.log("event init", data);
             instance.entity.VerificationStepGlobal.verificationType =
               instance.ui.VerificationTypeTabs.tabNumberToVerificationType(
                 data.tabNumber
