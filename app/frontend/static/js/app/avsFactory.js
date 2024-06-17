@@ -312,6 +312,8 @@ var AvsFactory;
             ResultPageSuccess.Event.init();
             ResultPageSuccess.Binding.init();
             ResultPageSuccess.Method.init();
+            var resultSuccessButton = $("#resultSuccessButton");
+            resultSuccessButton.click();
         }
         ResultPageSuccess.init = init;
     })(ResultPageSuccess = AvsFactory.ResultPageSuccess || (AvsFactory.ResultPageSuccess = {}));
