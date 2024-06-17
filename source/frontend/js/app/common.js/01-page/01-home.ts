@@ -189,7 +189,6 @@ namespace AvsHome {
         Ajax.getVerificationPayloadAndUrl(postData).then(
           (data: IGetVerificationPayloadAndUrlResponse) => {
             iframeAvsHandler(data.iframeUrl);
-            exampleImplementationIframeJsButton.click();
           },
           (error: IErrorResponse) => {
             exampleImplementationStartJsButton.removeAttr("disabled");
@@ -319,7 +318,7 @@ namespace AvsHome {
           case AvsFactoryIframeSdk.V1.Config.EVENT_ON_RESOURCES_LOADED:
             appendToLog("Resources loaded, verification is ready!");
             exampleImplementationIframeJsButton.removeAttr("disabled");
-
+            exampleImplementationIframeJsButton.click();
             break;
 
           case AvsFactoryIframeSdk.V1.Config.EVENT_ON_CLOSE_IFRAME:
