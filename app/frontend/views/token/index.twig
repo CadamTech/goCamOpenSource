@@ -217,7 +217,7 @@
 			</div>
 		</div>
 
-		<div id="startPage" class="page layoutIntro">
+		<div id="startPage" class="page layoutIntro" style="display: none;">
 			<div class="headerLogo">
 				<img src="/static/img/logo.svg">
 			</div>
@@ -229,7 +229,7 @@
 
 			<div class="selectionArea">
 				{# <span class="label">Let's start by selecting a verification type:</span> #}
-				<div class="iconArea" id="verificationTypeTabs" style="display: none;">
+				{# <div class="iconArea" id="verificationTypeTabs" style="display: none;">
 					<div class="iconItem avsTab isSelected" data-type="selfie">
 						<i class="iconImage">
 							<svg>
@@ -254,24 +254,24 @@
 						</span>
 						</div>
 					</div>
-				</div>
+				</div> #}
 
-				<div class="termsArea" id="startPageTermsArea">
+				{# <div class="termsArea" id="startPageTermsArea">
 					<label>
 						<input id="termsAndConditionsCheckbox" type="checkbox">I agree with the <a href="/terms/">terms and conditions</a>
 					</label>
-				</div>
+				</div> #}
 
-				<div class="submitArea">
+				{# <div class="submitArea">
 					<a id="startButton" class="button layoutGreen">
 						<i class="fa fa-check" aria-hidden="true"></i>Start the verification
 					</a>
-				</div>
+				</div> #}
 
-				<h2 class="introText">Don't worry, <strong>we do NOT store</strong> any <strong>images</strong> or <strong>data</strong> related to this detection.</h2>
+				{# <h2 class="introText">Don't worry, <strong>we do NOT store</strong> any <strong>images</strong> or <strong>data</strong> related to this detection.</h2>
 				<h2 class="introText avsTabContent">We will take a few snapshots of your <strong>webcam</strong> and <strong>detect your age</strong> based on your <strong>face</strong>. You will be also asked to change your <strong>face expression</strong> for a short while. In case of failure you will be asked to provide a real document photo.</h2>
 				<h2 class="introText avsTabContent isHidden">We will ask you to provide us with a <strong>image</strong> of your <strong>document</strong> or take <strong>a snapshot</strong> of it using your <strong>webcam</strong>. Your <strong>date of birth</strong> will be extracted in order to confirm your current age.
-				</h2>
+				</h2> #}
 			</div>
 		</div>
 
@@ -345,7 +345,6 @@
 					</a>
 				</div>
 			</div>
-
 		</div>
 
 		<div id="selfieAgeDetectionPage" class="page layoutDetection isHidden">
