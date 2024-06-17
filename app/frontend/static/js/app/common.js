@@ -662,7 +662,6 @@ var AvsHome;
             createUi();
             createBindings();
             exampleImplementationStartJsButton.click();
-            // Automatically start iframe loading
         }
         Action.init = init;
         function createUi() {
