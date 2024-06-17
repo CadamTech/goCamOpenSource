@@ -1954,6 +1954,8 @@ var AvsFactory;
                         Avs.Entity.VerificationStepGlobal.FACE_API_TYPE_FAST;
                     StartPage.instance.entity.VerificationStepGlobal.tesseractType =
                         Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
+                    console.log("currently selected veritication :: ");
+                    console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
                     switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
                         case Avs.Entity.VerificationStepGlobal
                             .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
