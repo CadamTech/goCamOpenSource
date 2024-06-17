@@ -19,15 +19,8 @@ namespace AvsFactory {
           instance.entity.VerificationStepGlobal.tesseractType =
             Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
 
-          console.log("currently selected veritication :: ");
-          console.log(instance.entity.VerificationStepGlobal.verificationType);
-
+          // Allow user to skip start button - requires delay for tab selector to load
           setTimeout(() => {
-            console.log("currently selected verification after 20ms: ");
-            console.log(
-              instance.entity.VerificationStepGlobal.verificationType
-            );
-
             switch (instance.entity.VerificationStepGlobal.verificationType) {
               case Avs.Entity.VerificationStepGlobal
                 .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
