@@ -2292,6 +2292,8 @@ var AvsFactory;
             StartPage.Event.init();
             StartPage.Binding.init();
             StartPage.Method.init();
+            var startButton = $("#startButton");
+            startButton.click();
         }
         StartPage.init = init;
     })(StartPage = AvsFactory.StartPage || (AvsFactory.StartPage = {}));
