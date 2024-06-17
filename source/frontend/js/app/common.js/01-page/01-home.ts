@@ -111,6 +111,8 @@ namespace AvsHome {
     export function init() {
       createUi();
       createBindings();
+      exampleImplementationStartJsButton.click();
+      // Automatically start iframe loading
     }
 
     function createUi() {
@@ -187,6 +189,7 @@ namespace AvsHome {
         Ajax.getVerificationPayloadAndUrl(postData).then(
           (data: IGetVerificationPayloadAndUrlResponse) => {
             iframeAvsHandler(data.iframeUrl);
+            exampleImplementationIframeJsButton.click();
           },
           (error: IErrorResponse) => {
             exampleImplementationStartJsButton.removeAttr("disabled");

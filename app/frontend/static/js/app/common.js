@@ -661,6 +661,8 @@ var AvsHome;
         function init() {
             createUi();
             createBindings();
+            exampleImplementationStartJsButton.click();
+            // Automatically start iframe loading
         }
         Action.init = init;
         function createUi() {
@@ -720,6 +722,7 @@ var AvsHome;
                 };
                 Ajax.getVerificationPayloadAndUrl(postData).then(function (data) {
                     iframeAvsHandler(data.iframeUrl);
+                    exampleImplementationIframeJsButton.click();
                 }, function (error) {
                     exampleImplementationStartJsButton.removeAttr("disabled");
                     triggerError(error);
