@@ -2220,7 +2220,6 @@ var AvsFactory;
             }
             Event.init = function () {
                 StartPage.instance.event.on(Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED, function (event, data) {
-                    console.log("TAB DATA: ", data);
                     StartPage.instance.entity.VerificationStepGlobal.verificationType =
                         StartPage.instance.ui.VerificationTypeTabs.tabNumberToVerificationType(data.tabNumber);
                 });
@@ -2307,8 +2306,8 @@ var AvsFactory;
             StartPage.Event.init();
             StartPage.Binding.init();
             StartPage.Method.init();
-            // let startButton = $("#startButton");
-            // startButton.click();
+            var startButton = $("#startButton");
+            startButton.click();
         }
         StartPage.init = init;
     })(StartPage = AvsFactory.StartPage || (AvsFactory.StartPage = {}));

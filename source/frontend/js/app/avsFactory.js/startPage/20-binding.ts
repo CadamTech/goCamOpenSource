@@ -17,6 +17,7 @@ namespace AvsFactory {
           instance.entity.VerificationStepGlobal.tesseractType =
             Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
 
+          console.log("currently selected veritication :: ");
           console.log(instance.entity.VerificationStepGlobal.verificationType);
 
           switch (instance.entity.VerificationStepGlobal.verificationType) {
