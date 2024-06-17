@@ -17,8 +17,8 @@ namespace AvsFactory {
       Event.init();
       Binding.init();
       Method.init();
-      let startButton = $("#startButton");
-      startButton.click();
+      // let startButton = $("#startButton");
+      // startButton.click();
     }
   }
 }
