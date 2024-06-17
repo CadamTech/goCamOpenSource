@@ -55,7 +55,7 @@ var AvsFactoryIframeSdk;
                 var _this = this;
                 this.iframeInstance.create();
                 this.iframeInstance.open();
-                this.iframeInstance.onMessage = (function (eventMessage) {
+                this.iframeInstance.onMessage = function (eventMessage) {
                     _this.onMessage(eventMessage);
                     switch (eventMessage.name) {
                         case V1.Config.EVENT_ON_CHECK_IFRAME_LOADED:
@@ -91,7 +91,7 @@ var AvsFactoryIframeSdk;
                         default:
                         //
                     }
-                });
+                };
             };
             Core.prototype.onMessage = function (eventMessage) {
                 return;

@@ -2220,43 +2220,52 @@ var AvsFactory;
             }
             Event.init = function () {
                 StartPage.instance.event.on(Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED, function (event, data) {
-                    StartPage.instance.entity.VerificationStepGlobal.verificationType = StartPage.instance.ui.VerificationTypeTabs.tabNumberToVerificationType(data.tabNumber);
+                    console.log("TAB DATA: ", data);
+                    StartPage.instance.entity.VerificationStepGlobal.verificationType =
+                        StartPage.instance.ui.VerificationTypeTabs.tabNumberToVerificationType(data.tabNumber);
                 });
-                StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT + '.' + StartPage.Config.FACE_API_PRELOADER_NAME, function (event, data) {
-                    StartPage.instance.ui.FaceApiPreloaderPercentArea.setContent(data.total.progress + '%');
-                    if (data.total.progress == 100 && data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
+                StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT +
+                    "." +
+                    StartPage.Config.FACE_API_PRELOADER_NAME, function (event, data) {
+                    StartPage.instance.ui.FaceApiPreloaderPercentArea.setContent(data.total.progress + "%");
+                    if (data.total.progress == 100 &&
+                        data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
                         StartPage.instance.entity.SelfieAgeDetection.resourcesPreloaded = true;
                         StartPage.instance.ui.FaceApiPreloaderArea.fadeOut();
                         StartPage.instance.postMessage.emit(StartPage.Config.EVENT_ON_RESOURCES_LOADED);
                         return;
                     }
                     if (data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_ERROR) {
-                        StartPage.Method.renderError(25032, 'Preloading verification resources failed');
+                        StartPage.Method.renderError(25032, "Preloading verification resources failed");
                         return;
                     }
                 });
-                StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT + '.' + StartPage.Config.TESSERACT_PRELOADER_NAME, function (event, data) {
-                    StartPage.instance.ui.TesseractPreloaderPercentArea.setContent(data.total.progress + '%');
-                    if (data.total.progress == 100 && data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
+                StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT +
+                    "." +
+                    StartPage.Config.TESSERACT_PRELOADER_NAME, function (event, data) {
+                    StartPage.instance.ui.TesseractPreloaderPercentArea.setContent(data.total.progress + "%");
+                    if (data.total.progress == 100 &&
+                        data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
                         StartPage.instance.entity.ScanIdAgeVerification.resourcesPreloaded = true;
                         StartPage.instance.ui.TesseractPreloaderArea.fadeOut();
                         return;
                     }
                     if (data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_ERROR) {
-                        StartPage.Method.renderError(25033, 'Preloading verification resources failed');
+                        StartPage.Method.renderError(25033, "Preloading verification resources failed");
                         return;
                     }
                 });
                 StartPage.instance.event.on(Avs.StartPage.ON_POLL_DATA, function (event, data) {
-                    if (typeof data.isValidated !== 'undefined' && data.isValidated) {
+                    if (typeof data.isValidated !== "undefined" && data.isValidated) {
                         StartPage.instance.stopApiPolling();
                         StartPage.instance.ui.ErrorMessageArea.hide();
-                        StartPage.instance.entity.VerificationStepGlobal.deviceLocationVerification = Avs.Entity.VerificationStepGlobal.DEVICE_LOCATION_VERIFICATION_EXTERNAL;
+                        StartPage.instance.entity.VerificationStepGlobal.deviceLocationVerification =
+                            Avs.Entity.VerificationStepGlobal.DEVICE_LOCATION_VERIFICATION_EXTERNAL;
                         StartPage.Method.goToSuccessStep();
                     }
                 });
                 StartPage.instance.event.on(Avs.StartPage.ON_POLL_ERROR, function (event, data) {
-                    StartPage.instance.debug.logToContainer('Qr verification polling error: ' + data.msg);
+                    StartPage.instance.debug.logToContainer("Qr verification polling error: " + data.msg);
                 });
             };
             return Event;
