@@ -1940,18 +1940,21 @@ var AvsFactory;
             function Binding() {
             }
             Binding.init = function () {
-                $(window).on('resize', function () {
+                $(window).on("resize", function () {
                     StartPage.Method.setScreenOrientation();
                 });
                 StartPage.instance.ui.StartButton.onClick(function () {
-                    if (!StartPage.instance.entity.VerificationStepGlobal.termsAndConditionAgreement) {
-                        alert('Please agree with the terms and conditions first');
-                        return;
-                    }
-                    StartPage.instance.entity.VerificationStepGlobal.faceApiType = Avs.Entity.VerificationStepGlobal.FACE_API_TYPE_FAST;
-                    StartPage.instance.entity.VerificationStepGlobal.tesseractType = Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
+                    // if (!instance.entity.VerificationStepGlobal.termsAndConditionAgreement) {
+                    // 	alert('Please agree with the terms and conditions first');
+                    // 	return;
+                    // }
+                    StartPage.instance.entity.VerificationStepGlobal.faceApiType =
+                        Avs.Entity.VerificationStepGlobal.FACE_API_TYPE_FAST;
+                    StartPage.instance.entity.VerificationStepGlobal.tesseractType =
+                        Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
                     switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
-                        case Avs.Entity.VerificationStepGlobal.VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
+                        case Avs.Entity.VerificationStepGlobal
+                            .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
                             AvsFactory.SelfieAgeDetectionIntro.init();
                             StartPage.Method.showPageStep(StartPage.Config.SELFIE_AGE_DETECTION_INTRO_LAYER);
                             break;
@@ -1964,7 +1967,8 @@ var AvsFactory;
                     }
                 });
                 StartPage.instance.ui.TermsAndConditionsCheckbox.onChange(function () {
-                    StartPage.instance.entity.VerificationStepGlobal.termsAndConditionAgreement = StartPage.instance.ui.TermsAndConditionsCheckbox.states.value;
+                    StartPage.instance.entity.VerificationStepGlobal.termsAndConditionAgreement =
+                        StartPage.instance.ui.TermsAndConditionsCheckbox.states.value;
                     Avs.Helper.Common.setLocalStorageValue(StartPage.Config.KEY_LOCAL_STORAGE_TERMS_AGREED, StartPage.instance.ui.TermsAndConditionsCheckbox.states.value);
                 });
                 StartPage.instance.ui.DebugCloseButton.onClick(function () {
@@ -1991,14 +1995,14 @@ var AvsFactory;
                         window.location.reload();
                     }
                 });
-                StartPage.instance.ui.StartPageTermsArea.element.on('click', 'a', function () {
+                StartPage.instance.ui.StartPageTermsArea.element.on("click", "a", function () {
                     StartPage.instance.ui.TermsAndConditionsArea.show();
                     return false;
                 });
                 StartPage.instance.ui.TermsAndConditionsBackButton.onClick(function () {
                     StartPage.instance.ui.TermsAndConditionsArea.hide();
                 });
-                StartPage.instance.ui.ErrorMessageAdditionalTextArea.element.on('click', 'a', function () {
+                StartPage.instance.ui.ErrorMessageAdditionalTextArea.element.on("click", "a", function () {
                     StartPage.instance.ui.WebCamAccessHelpArea.show();
                     StartPage.instance.ui.ErrorMessageArea.hide();
                     return false;
