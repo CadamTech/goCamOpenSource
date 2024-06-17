@@ -5,19 +5,10 @@ namespace AvsFactory {
         instance.event.on(
           Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED,
           (event: Avs.Event.Listener, data: Avs.Ui.Handler.ITabsEventData) => {
-            console.log(
-              "on tab selected",
-              instance.entity.VerificationStepGlobal.verificationType
-            );
-            console.log("parameters", data.tabNumber);
             instance.entity.VerificationStepGlobal.verificationType =
               instance.ui.VerificationTypeTabs.tabNumberToVerificationType(
                 data.tabNumber
               );
-            console.log(
-              "after",
-              instance.entity.VerificationStepGlobal.verificationType
-            );
           }
         );
 

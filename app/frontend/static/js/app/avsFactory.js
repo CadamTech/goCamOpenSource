@@ -1958,6 +1958,10 @@ var AvsFactory;
                         Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
                     console.log("currently selected veritication :: ");
                     console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
+                    setTimeout(function () {
+                        console.log("currently selected veritication after 1 seconds:: ");
+                        console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
+                    }, 1000);
                     switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
                         case Avs.Entity.VerificationStepGlobal
                             .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:
@@ -2224,11 +2228,8 @@ var AvsFactory;
             }
             Event.init = function () {
                 StartPage.instance.event.on(Avs.Ui.Library.VerificationTypeTabs.ON_TAB_SELECTED, function (event, data) {
-                    console.log("on tab selected", StartPage.instance.entity.VerificationStepGlobal.verificationType);
-                    console.log("parameters", data.tabNumber);
                     StartPage.instance.entity.VerificationStepGlobal.verificationType =
                         StartPage.instance.ui.VerificationTypeTabs.tabNumberToVerificationType(data.tabNumber);
-                    console.log("after", StartPage.instance.entity.VerificationStepGlobal.verificationType);
                 });
                 StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT +
                     "." +
