@@ -1300,8 +1300,11 @@ var AvsFactory;
             function Event() {
             }
             Event.init = function () {
-                AvsFactory.StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT + '.' + AvsFactory.StartPage.Config.FACE_API_PRELOADER_NAME, function (event, data) {
-                    if (data.total.progress == 100 && data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
+                AvsFactory.StartPage.instance.event.on(Avs.Helper.FilePreloader.ON_PRELOAD_EVENT +
+                    "." +
+                    AvsFactory.StartPage.Config.FACE_API_PRELOADER_NAME, function (event, data) {
+                    if (data.total.progress == 100 &&
+                        data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
                         SelfieAgeDetectionIntro.instance.ui.SelfieAgeDetectionStartButton.enable();
                     }
                 });
@@ -1664,50 +1667,53 @@ var AvsFactory;
             function Event() {
             }
             Event.init = function () {
-                SelfieAgeDetectionPage.instance.event.on(SelfieAgeDetectionPage.Config.EVENT_NAME_PREFIX + '.' + Avs.DataChannel.Webrtc.ON_WEBCAM_INIT_ERROR, function (event) {
-                    AvsFactory.StartPage.Method.renderError(25047, 'Webcam initialization error!');
+                SelfieAgeDetectionPage.instance.event.on(SelfieAgeDetectionPage.Config.EVENT_NAME_PREFIX +
+                    "." +
+                    Avs.DataChannel.Webrtc.ON_WEBCAM_INIT_ERROR, function (event) {
+                    AvsFactory.StartPage.Method.renderError(25047, "Webcam initialization error!");
                     return;
                 });
-                SelfieAgeDetectionPage.instance.event.on(SelfieAgeDetectionPage.Config.EVENT_NAME_PREFIX + '.' + Avs.DataChannel.Webrtc.ON_VIDEO_PLAY, function (event) {
-                    SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelArea.setContent('Initializing detection libraries ... ');
+                SelfieAgeDetectionPage.instance.event.on(SelfieAgeDetectionPage.Config.EVENT_NAME_PREFIX + "." + Avs.DataChannel.Webrtc.ON_VIDEO_PLAY, function (event) {
+                    // instance.ui.SelfieAgeDetectionLoadingLabelArea.setContent('Initializing detection libraries ... ');
+                    SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelArea.setContent("All verifications are performed locally ");
                     SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.setValue(0);
-                    SelfieAgeDetectionPage.instance.debug.logToContainer('<p>Starting face detection.</p>');
+                    SelfieAgeDetectionPage.instance.debug.logToContainer("<p>Starting face detection.</p>");
                     SelfieAgeDetectionPage.instance.plugin.Library.Ml.FaceApi.loadDetector(function (result) {
                         if (result === null) {
-                            AvsFactory.StartPage.Method.renderError(25035, 'Failed to initialize detection libraries');
+                            AvsFactory.StartPage.Method.renderError(25035, "Failed to initialize detection libraries");
                             return;
                         }
                         SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.increment();
-                        SelfieAgeDetectionPage.instance.debug.logToContainer('<p>Loaded detector.</p>');
+                        SelfieAgeDetectionPage.instance.debug.logToContainer("<p>Loaded detector.</p>");
                         SelfieAgeDetectionPage.instance.plugin.Library.Ml.FaceApi.loadAgeGenderModel(function (result) {
                             if (result === null) {
-                                AvsFactory.StartPage.Method.renderError(25036, 'Failed to initialize detection libraries');
+                                AvsFactory.StartPage.Method.renderError(25036, "Failed to initialize detection libraries");
                                 return;
                             }
                             SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.increment();
-                            SelfieAgeDetectionPage.instance.debug.logToContainer('<p>Loaded age model.</p>');
+                            SelfieAgeDetectionPage.instance.debug.logToContainer("<p>Loaded age model.</p>");
                             SelfieAgeDetectionPage.instance.plugin.Library.Ml.FaceApi.loadFaceRecognitionModel(function (result) {
                                 if (result === null) {
-                                    AvsFactory.StartPage.Method.renderError(25037, 'Failed to initialize detection libraries');
+                                    AvsFactory.StartPage.Method.renderError(25037, "Failed to initialize detection libraries");
                                     return;
                                 }
                                 SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.increment();
-                                SelfieAgeDetectionPage.instance.debug.logToContainer('<p>Loaded face recognition model.</p>');
+                                SelfieAgeDetectionPage.instance.debug.logToContainer("<p>Loaded face recognition model.</p>");
                                 SelfieAgeDetectionPage.instance.plugin.Library.Ml.FaceApi.loadLandmarksModel(function (result) {
                                     if (result === null) {
-                                        AvsFactory.StartPage.Method.renderError(25038, 'Failed to initialize detection libraries');
+                                        AvsFactory.StartPage.Method.renderError(25038, "Failed to initialize detection libraries");
                                         return;
                                     }
                                     SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.increment();
-                                    SelfieAgeDetectionPage.instance.debug.logToContainer('<p>Loaded face landmarks model.</p>');
+                                    SelfieAgeDetectionPage.instance.debug.logToContainer("<p>Loaded face landmarks model.</p>");
                                     SelfieAgeDetectionPage.instance.plugin.Library.Ml.FaceApi.loadFaceExpressionModel(function (result) {
                                         if (result === null) {
-                                            AvsFactory.StartPage.Method.renderError(25058, 'Failed to initialize detection libraries');
+                                            AvsFactory.StartPage.Method.renderError(25058, "Failed to initialize detection libraries");
                                             return;
                                         }
                                         SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.increment();
-                                        SelfieAgeDetectionPage.instance.debug.logToContainer('<p>Loaded face expression model.</p>');
-                                        SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelArea.setContent('Detection in progress');
+                                        SelfieAgeDetectionPage.instance.debug.logToContainer("<p>Loaded face expression model.</p>");
+                                        SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelArea.setContent("Detection in progress");
                                         SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionLoadingLabelPercentCounter.hide();
                                         SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionStatusLabel.show();
                                         SelfieAgeDetectionPage.instance.ui.SelfieAgeDetectionStatusLabel.startBlinking();
@@ -1956,11 +1962,8 @@ var AvsFactory;
                         Avs.Entity.VerificationStepGlobal.FACE_API_TYPE_FAST;
                     StartPage.instance.entity.VerificationStepGlobal.tesseractType =
                         Avs.Entity.VerificationStepGlobal.TESSERACT_TYPE_PRECISE_FR;
-                    console.log("currently selected veritication :: ");
-                    console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
+                    // Allow user to skip start button - requires delay for tab selector to load
                     setTimeout(function () {
-                        console.log("currently selected verification after 20ms: ");
-                        console.log(StartPage.instance.entity.VerificationStepGlobal.verificationType);
                         switch (StartPage.instance.entity.VerificationStepGlobal.verificationType) {
                             case Avs.Entity.VerificationStepGlobal
                                 .VERIFICATION_TYPE_SELFIE_AND_SCAN_ID_OPTIONAL:

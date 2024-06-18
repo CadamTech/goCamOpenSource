@@ -11419,56 +11419,58 @@ var Avs;
                     this.event = event;
                 }
                 Common.prototype.show = function (displayAsBlock) {
-                    this.element.removeClass('isHidden');
+                    this.element.removeClass("isHidden");
                     this.states.visible = true;
                     this.updateChildUiElementStates();
                 };
                 Common.prototype.fadeIn = function () {
                     var _this = this;
                     this.element.fadeIn(500, function () {
-                        _this.element.removeClass('isHidden');
+                        _this.element.removeClass("isHidden");
                         _this.states.visible = true;
                         _this.updateChildUiElementStates();
                     });
                 };
                 Common.prototype.hide = function () {
-                    this.element.addClass('isHidden');
+                    this.element.addClass("isHidden");
                     this.states.visible = false;
                     this.updateChildUiElementStates();
                 };
                 Common.prototype.fadeOut = function () {
                     var _this = this;
                     this.element.fadeOut(500, function () {
-                        _this.element.addClass('isHidden');
+                        _this.element.addClass("isHidden");
                         _this.states.visible = false;
                         _this.updateChildUiElementStates();
                     });
                 };
                 Common.prototype.toggleVisibility = function () {
                     if (this.states.visible) {
-                        this.element.addClass('isHidden');
+                        this.element.addClass("isHidden");
                         return;
                     }
-                    this.element.removeClass('isHidden');
+                    this.element.removeClass("isHidden");
                 };
                 Common.prototype.enable = function () {
-                    this.element.attr('disabled', false);
+                    this.element.attr("disabled", false);
                     this.states.enabled = true;
                     this.enableAppearance();
+                    // Automatically trigger click event on enable
+                    this.element.trigger("click");
                 };
                 Common.prototype.disable = function () {
-                    this.element.attr('disabled', true);
+                    this.element.attr("disabled", true);
                     this.states.enabled = false;
                     this.disableAppearance();
                 };
                 Common.prototype.enableAppearance = function () {
-                    if (this.element.hasClass('isDisabled')) {
-                        this.element.removeClass('isDisabled');
+                    if (this.element.hasClass("isDisabled")) {
+                        this.element.removeClass("isDisabled");
                     }
                 };
                 Common.prototype.disableAppearance = function () {
-                    if (!this.element.hasClass('isDisabled')) {
-                        this.element.addClass('isDisabled');
+                    if (!this.element.hasClass("isDisabled")) {
+                        this.element.addClass("isDisabled");
                     }
                 };
                 Common.prototype.incrementFontSize = function (units) {
@@ -11476,20 +11478,20 @@ var Avs;
                     var unitsToIncrement = units || Common.FONT_SIZE_INCREMENT_STEP;
                     setTimeout(function () {
                         _this.element.css({
-                            'font-size': '+=' + unitsToIncrement
+                            "font-size": "+=" + unitsToIncrement
                         });
                     }, 150); // wait for /ui/handler/scrollable @ initLibrary()
                 };
                 Common.prototype.updateLineHeight = function () {
                     var _this = this;
                     setTimeout(function () {
-                        _this.element.css('lineHeight', parseInt(_this.element.css('fontSize')) + 'px');
+                        _this.element.css("lineHeight", parseInt(_this.element.css("fontSize")) + "px");
                     }, 150); // wait for /ui/handler/scrollable @ initLibrary()
                 };
                 Common.prototype.decrementFontSize = function (units) {
                     var unitsToDecrement = units || Common.FONT_SIZE_DECREMENT_STEP;
                     this.element.css({
-                        'font-size': '-=' + unitsToDecrement
+                        "font-size": "-=" + unitsToDecrement
                     });
                 };
                 Common.prototype.addChildUiElement = function (uiElement) {
@@ -11498,14 +11500,14 @@ var Avs;
                 Common.prototype.updateChildUiElementStates = function () {
                     if (this.childUiElements.length) {
                         for (var i = 0, j = this.childUiElements.length; i < j; i++) {
-                            if (typeof this.childUiElements[i].initStates == 'function') {
+                            if (typeof this.childUiElements[i].initStates == "function") {
                                 this.childUiElements[i].initStates();
                             }
                         }
                     }
                 };
                 Common.prototype.getIdSelector = function () {
-                    return '#' + this.element.attr('id');
+                    return "#" + this.element.attr("id");
                 };
                 Common.prototype.onClick = function (callback) {
                     this.element.click(function (e) {

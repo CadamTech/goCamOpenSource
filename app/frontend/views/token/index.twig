@@ -316,20 +316,23 @@
 			<div class="introIcon">
 				<img src="/static/img/selfie-icon.svg">
 			</div>
-			<h1 class="introHeading">Selfie age verification:
-			</h1>
-			<h2 class="introText">We will analyze your <strong>selfie</strong>, make sure you look into the <strong>camera</strong> and your <strong>face</strong> it's <strong>visible</strong> and <strong>centered</strong> as much as possible:
-			</h2>		<div class="introText">
+			{# <h1 class="introHeading">Selfie age verification:
+			</h1> #}
+			{# <h2 class="introText">We will analyze your <strong>selfie</strong>, make sure you look into the <strong>camera</strong> and your <strong>face</strong> it's <strong>visible</strong> and <strong>centered</strong> as much as possible: #}
+			{# </h2> #}
+			<div class="introText">
+				<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
 				<p class="layoutRedText">No data, no videos and no pictures are sent to our servers</p>
+				
+				
 			</div>
-			<div id="selfieAgeDetectionDeviceAccessArea" class="informationArea layoutBlack layoutRelative">
+			<div class="statusArea">Please allow your camera access in order to continue
+				</div>
+			{# <div id="selfieAgeDetectionDeviceAccessArea" class="informationArea layoutBlack layoutRelative">
 				<div class="loadingArea">
-					<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
 					<strong>Detection in progress:</strong>
 				</div>
-				<div class="statusArea">Please allow your camera access in order to continue
-				</div>
-			</div>
+			</div> #}
 			<div id="selfieAgeDetectionDeviceSelectionArea" class="isHidden">
 				<div class="selectionArea">
 					<span class="label">Please select a camera to use:</span>
@@ -338,7 +341,7 @@
 			</div>
 			<div id="selfieAgeDetectionSubmitArea" class="isHidden">
 				<div class="submitArea">
-					<a id="selfieAgeDetectionStartButton" class="button layoutGreen">Continue
+					<a id="selfieAgeDetectionStartButton" class="button layoutGreen" style="display: none;">Continue
 						<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
 					</a>
 					{# <a id="selfieAgeDetectionCancelButton" class="linkButton">Cancel
@@ -404,18 +407,22 @@
 			<div class="introIcon">
 				<img src="/static/img/scanid-icon.svg">
 			</div>
-			<h1 class="introHeading">Scan id age verification
-			</h1>
-			<h2 class="introText">We will analyze your <strong>document</strong>, make sure the document it's <strong>contained</strong> within the <strong>marked area</strong> on the screen
-			</h2>
-			<div class="documentHelperArea" id="scanIdAgeVerificationDocumentHelperArea"></div>
-			<div id="scanIdAgeVerificationDeviceAccessArea" class="informationArea layoutBlack layoutRelative">
-				<div class="loadingArea">
-					<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
-					<strong>Detection in progress</strong>
-				</div>
+			{# <h1 class="introHeading">Scan id age verification
+			</h1> #}
+			<div class="introText">
+				<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+				<p class="layoutRedText">No data, no videos and no pictures are sent to our servers</p>
+				{# We will analyze your <strong>document</strong>, make sure the document it's <strong>contained</strong> within the <strong>marked area</strong> on the screen #}
 				<div class="statusArea">Please allow your camera access in order to continue
 				</div>
+			</div>
+			
+			<div class="documentHelperArea" id="scanIdAgeVerificationDocumentHelperArea"></div>
+			<div id="scanIdAgeVerificationDeviceAccessArea" class="informationArea layoutBlack layoutRelative">
+				{# <div class="loadingArea">
+					
+					<strong>Detection in progress</strong>
+				</div> #}
 			</div>
 			<div id="scanIdAgeVerificationDeviceSelectionArea" class="isHidden">
 				<div class="selectionArea">
@@ -501,7 +508,7 @@
 					</div>
 					<div class="checkOutList">
 						<div class="checkOutItem">
-						<span class="text">Initializing detection libraries -
+						<span class="text">All verifications are completed locally -
 							<span id="scanIdAgeVerificationLoadingLabelPercentCounter"></span>
 						</span>
 							<span class="status">
@@ -600,10 +607,10 @@
 			</h1>
 			<h2 class="introText">Information stored locally on your device are now deleted
 			</h2>
-			<h2 class="introText">Your <strong>age</strong> has been <strong>verified</strong>, go <strong>back to your account</strong> using the button below
-			</h2>
-			<h2 class="introText" id="resultPageSuccessSelfieArea"></h2>
-			<h2 class="introText" id="resultPageSuccessScanIdArea"></h2>
+			{# <h2 class="introText">Your <strong>age</strong> has been <strong>verified</strong>, go <strong>back to your account</strong> using the button below
+			</h2> #}
+			{# <h2 class="introText" id="resultPageSuccessSelfieArea"></h2>
+			<h2 class="introText" id="resultPageSuccessScanIdArea"></h2> #}
 			<div class="submitArea" style="display: none;">
 				<a id="resultSuccessButton" class="button layoutGreen">
 					<i class="fa fa-check" aria-hidden="true"></i>Back to the main site
@@ -619,10 +626,10 @@
 			</h1>
 			<h2 class="introText">Information stored locally on your device are now deleted
 			</h2>
-			<h2 class="introText" id="resultPageFailReasonArea"></h2>
-			<h2 class="introText" id="resultPageFailQrArea">Or, <strong>continue verification on your mobile</strong> by scanning the QR code below. Make sure you <strong>keep this window open</strong> while using your mobile.
-			</h2>
-			<div id="failPageErrorQrCode" class="qrCodeArea"></div>
+			{# <h2 class="introText" id="resultPageFailReasonArea"></h2> #}
+			{# <h2 class="introText" id="resultPageFailQrArea">Or, <strong>continue verification on your mobile</strong> by scanning the QR code below. Make sure you <strong>keep this window open</strong> while using your mobile.
+			</h2> #}
+			{# <div id="failPageErrorQrCode" class="qrCodeArea"></div> #}
 			<div class="submitArea">
 				<a id="resultFailButton" class="button layoutRed">
 					<i class="fa fa-refresh" aria-hidden="true"></i>Start over
