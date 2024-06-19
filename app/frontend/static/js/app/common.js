@@ -817,12 +817,9 @@ var AvsHome;
                         exampleImplementationStartJsButton.attr("disabled", "disabled");
                         exampleImplementationIframeJsButton.attr("disabled", "disabled");
                         // Send message to parent window
-                        // window.parent.postMessage(
-                        //   {
-                        //     type: "verificationSuccess",
-                        //   },
-                        //   "*"
-                        // );
+                        window.parent.postMessage({
+                            type: "verificationSuccess"
+                        }, "*");
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_VERIFICATION_ERROR:
                         appendToLog("Verification completed with error");
