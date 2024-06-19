@@ -329,29 +329,14 @@ namespace AvsHome {
 
           case AvsFactoryIframeSdk.V1.Config.EVENT_ON_VERIFICATION_SUCCESS:
             appendToLog("Verification completed successfully");
-
             exampleImplementationStartJsButton.attr("disabled", "disabled");
             exampleImplementationIframeJsButton.attr("disabled", "disabled");
-
-            Ajax.validateVerificationPayload({
-              verificationPayload: eventMessage.data.payload,
-            }).then(
-              () => {
-                appendToLog("Sending confirmation to Opale.io ...");
-
-                // Send message to parent window
-                setTimeout(() => {
-                  window.parent.postMessage(
-                    {
-                      type: "verificationSuccess",
-                    },
-                    "*"
-                  );
-                }, 5000);
+            // Send message to parent window
+            window.parent.postMessage(
+              {
+                type: "verificationSuccess",
               },
-              (error: IErrorResponse) => {
-                triggerError(error);
-              }
+              "*"
             );
 
             break;

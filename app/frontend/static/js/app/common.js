@@ -816,19 +816,10 @@ var AvsHome;
                         appendToLog("Verification completed successfully");
                         exampleImplementationStartJsButton.attr("disabled", "disabled");
                         exampleImplementationIframeJsButton.attr("disabled", "disabled");
-                        Ajax.validateVerificationPayload({
-                            verificationPayload: eventMessage.data.payload
-                        }).then(function () {
-                            appendToLog("Sending confirmation to Opale.io ...");
-                            // Send message to parent window
-                            setTimeout(function () {
-                                window.parent.postMessage({
-                                    type: "verificationSuccess"
-                                }, "*");
-                            }, 5000);
-                        }, function (error) {
-                            triggerError(error);
-                        });
+                        // Send message to parent window
+                        window.parent.postMessage({
+                            type: "verificationSuccess"
+                        }, "*");
                         break;
                     case AvsFactoryIframeSdk.V1.Config.EVENT_ON_VERIFICATION_ERROR:
                         appendToLog("Verification completed with error");
