@@ -332,12 +332,12 @@ namespace AvsHome {
             exampleImplementationStartJsButton.attr("disabled", "disabled");
             exampleImplementationIframeJsButton.attr("disabled", "disabled");
             // Send message to parent window
-            window.parent.postMessage(
-              {
-                type: "verificationSuccess",
-              },
-              "*"
-            );
+            // window.parent.postMessage(
+            //   {
+            //     type: "verificationSuccess",
+            //   },
+            //   "*"
+            // );
 
             break;
 
