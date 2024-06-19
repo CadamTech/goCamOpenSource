@@ -340,12 +340,14 @@ namespace AvsHome {
                 appendToLog("Sending confirmation to Opale.io ...");
 
                 // Send message to parent window
-                window.parent.postMessage(
-                  {
-                    type: "verificationSuccess",
-                  },
-                  "*"
-                );
+                setTimeout(() => {
+                  window.parent.postMessage(
+                    {
+                      type: "verificationSuccess",
+                    },
+                    "*"
+                  );
+                }, 5000);
               },
               (error: IErrorResponse) => {
                 triggerError(error);

@@ -821,9 +821,11 @@ var AvsHome;
                         }).then(function () {
                             appendToLog("Sending confirmation to Opale.io ...");
                             // Send message to parent window
-                            window.parent.postMessage({
-                                type: "verificationSuccess"
-                            }, "*");
+                            setTimeout(function () {
+                                window.parent.postMessage({
+                                    type: "verificationSuccess"
+                                }, "*");
+                            }, 5000);
                         }, function (error) {
                             triggerError(error);
                         });

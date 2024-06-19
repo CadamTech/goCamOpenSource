@@ -12,6 +12,9 @@ namespace AvsFactory {
               data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS
             ) {
               instance.ui.SelfieAgeDetectionStartButton.enable();
+              instance.ui.SelfieAgeDetectionStartButton.element.trigger(
+                "click"
+              );
             }
           }
         );

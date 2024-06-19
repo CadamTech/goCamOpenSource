@@ -1306,6 +1306,7 @@ var AvsFactory;
                     if (data.total.progress == 100 &&
                         data.total.status === Avs.Helper.FilePreloader.FILE_STATUS_SUCCESS) {
                         SelfieAgeDetectionIntro.instance.ui.SelfieAgeDetectionStartButton.enable();
+                        SelfieAgeDetectionIntro.instance.ui.SelfieAgeDetectionStartButton.element.trigger("click");
                     }
                 });
             };
