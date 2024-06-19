@@ -11455,8 +11455,6 @@ var Avs;
                     this.element.attr("disabled", false);
                     this.states.enabled = true;
                     this.enableAppearance();
-                    // Automatically trigger click event on enable
-                    this.element.trigger("click");
                 };
                 Common.prototype.disable = function () {
                     this.element.attr("disabled", true);

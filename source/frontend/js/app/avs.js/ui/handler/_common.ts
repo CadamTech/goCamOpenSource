@@ -61,8 +61,6 @@ namespace Avs {
           this.element.attr("disabled", <any>false);
           this.states.enabled = true;
           this.enableAppearance();
-          // Automatically trigger click event on enable
-          this.element.trigger("click");
         }
 
         public disable() {
