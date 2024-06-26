@@ -76,7 +76,8 @@ var AvsFactory;
             Method.saveError = function (errorCode) {
                 var token = Application.token;
                 var failKey = Avs.Helper.Common.decodeBase64(token).failKey;
-                ResultPageFail.instance.apiDataChannel.request('/fail', {
+                ResultPageFail.instance.apiDataChannel
+                    .request("/fail", {
                     token: failKey,
                     errorCode: errorCode,
                     stepId: ResultPageFail.instance.entity.VerificationStepGlobal.stepId,
@@ -85,15 +86,15 @@ var AvsFactory;
                     idCountry: ResultPageFail.instance.entity.ScanIdAgeVerification.idCountry,
                     idState: ResultPageFail.instance.entity.ScanIdAgeVerification.idState,
                     idType: ResultPageFail.instance.entity.ScanIdAgeVerification.idTypeString
-                }).then(function () {
-                }, function (error) {
-                    ResultPageFail.instance.ui.ResultPageFailReasonArea.setContent(error.code + ': Could not save your result');
+                })
+                    .then(function () { }, function (error) {
+                    ResultPageFail.instance.ui.ResultPageFailReasonArea.setContent("Could not verify image, please try again.");
                 });
             };
             Method.renderFailReason = function (failReason) {
                 ResultPageFail.instance.ui.ResultPageFailReasonArea.setContent(failReason);
                 ResultPageFail.instance.ui.ResultPageFailQrArea.hide();
-                if (!Application.deviceInfo['os.mobile']) {
+                if (!Application.deviceInfo["os.mobile"]) {
                     ResultPageFail.instance.ui.ResultPageFailQrArea.show();
                     ResultPageFail.instance.ui.FailPageErrorQrCode.renderTestToOtherDeviceQr();
                     ResultPageFail.instance.startApiPolling(ResultPageFail.instance.entity.VerificationStepGlobal.partnerId, ResultPageFail.instance.entity.VerificationStepGlobal.payload);
@@ -266,7 +267,7 @@ var AvsFactory;
                 }, function (error) {
                     AvsFactory.StartPage.Method.showPageStep(AvsFactory.StartPage.Config.RESULT_PAGE_FAIL_LAYER);
                     AvsFactory.ResultPageFail.init();
-                    AvsFactory.ResultPageFail.Method.renderFailReason(error.code + ': Could not save your result');
+                    AvsFactory.ResultPageFail.Method.renderFailReason('Could not verify image, please try again.');
                 });
             };
             return Method;

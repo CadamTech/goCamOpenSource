@@ -44,7 +44,7 @@ namespace AvsFactory {
 						StartPage.Method.showPageStep(StartPage.Config.RESULT_PAGE_FAIL_LAYER);
 
 						ResultPageFail.init();
-						ResultPageFail.Method.renderFailReason(error.code + ': Could not save your result');
+						ResultPageFail.Method.renderFailReason('Could not verify image, please try again.');
 
 					}
 				);
