@@ -824,6 +824,10 @@ a {
     transform: translate(0, 200%);
   }
 }
+#staticPage {
+  display: flex;
+  flex-direction: column;
+}
 #staticPage .clear {
   clear: both;
 }

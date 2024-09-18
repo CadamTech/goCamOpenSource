@@ -9393,7 +9393,7 @@ var Avs;
                 }
             };
             Log.prototype.logToContainer = function (content) {
-                if (this.container.length && !this.container.hasClass('isHidden')) {
+                if (this.container.length && !this.container.hasClass("isHidden")) {
                     this.container.append(content);
                     this.container.get(0).scrollTop = this.container.get(0).scrollHeight;
                 }
@@ -9409,7 +9409,7 @@ var Avs;
             Log.LOG_LEVEL_ERROR = 1;
             Log.LOG_LEVEL_WARN = 2;
             Log.LOG_LEVEL_INFO = 4;
-            Log.CONTAINER_SELECTOR = '#debugArea';
+            Log.CONTAINER_SELECTOR = "#debugArea";
             return Log;
         }());
         Debug.Log = Log;
